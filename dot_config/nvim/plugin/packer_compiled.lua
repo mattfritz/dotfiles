@@ -134,11 +134,8 @@ _G.packer_plugins = {
     path = "/Users/matt/.local/share/nvim/site/pack/packer/opt/lspkind-nvim"
   },
   ["lspsaga.nvim"] = {
-    config = { "require('plugins.lspsaga')" },
-    load_after = {},
     loaded = true,
-    needs_bufread = false,
-    path = "/Users/matt/.local/share/nvim/site/pack/packer/opt/lspsaga.nvim"
+    path = "/Users/matt/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
   },
   ["lualine.nvim"] = {
     config = { "require('plugins.lualine')" },
@@ -161,7 +158,7 @@ _G.packer_plugins = {
     path = "/Users/matt/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
   },
   ["nvim-lspconfig"] = {
-    after = { "lspsaga.nvim", "lspkind-nvim" },
+    after = { "lspkind-nvim" },
     loaded = true,
     only_config = true
   },
@@ -308,26 +305,10 @@ time([[Setup for vim-dispatch]], false)
 time([[packadd for vim-dispatch]], true)
 vim.cmd [[packadd vim-dispatch]]
 time([[packadd for vim-dispatch]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('plugins.treesitter')
-time([[Config for nvim-treesitter]], false)
 -- Config for: vimwiki
 time([[Config for vimwiki]], true)
 require('plugins.vimwiki')
 time([[Config for vimwiki]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require('plugins.lualine')
-time([[Config for lualine.nvim]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require('plugins.gitsigns')
-time([[Config for gitsigns.nvim]], false)
--- Config for: neon
-time([[Config for neon]], true)
-require('plugins.colors')
-time([[Config for neon]], false)
 -- Config for: blamer.nvim
 time([[Config for blamer.nvim]], true)
 require('plugins.blamer')
@@ -336,37 +317,48 @@ time([[Config for blamer.nvim]], false)
 time([[Config for nvim-cmp]], true)
 require('plugins.cmp')
 time([[Config for nvim-cmp]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-require('colorizer').setup()
-time([[Config for nvim-colorizer.lua]], false)
--- Config for: lexima.vim
-time([[Config for lexima.vim]], true)
-vim.cmd('call lexima#set_default_rules()')
-time([[Config for lexima.vim]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require('plugins.lspconfig')
-time([[Config for nvim-lspconfig]], false)
--- Config for: vim-test
-time([[Config for vim-test]], true)
-require('plugins.vim-test')
-time([[Config for vim-test]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require('plugins.telescope')
-time([[Config for telescope.nvim]], false)
+-- Config for: neon
+time([[Config for neon]], true)
+require('plugins.colors')
+time([[Config for neon]], false)
 -- Config for: kommentary
 time([[Config for kommentary]], true)
 require('plugins.kommentary')
 time([[Config for kommentary]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('plugins.lualine')
+time([[Config for lualine.nvim]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require('plugins.telescope')
+time([[Config for telescope.nvim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require('colorizer').setup()
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('plugins.treesitter')
+time([[Config for nvim-treesitter]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require('plugins.gitsigns')
+time([[Config for gitsigns.nvim]], false)
+-- Config for: vim-test
+time([[Config for vim-test]], true)
+require('plugins.vim-test')
+time([[Config for vim-test]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require('plugins.lspconfig')
+time([[Config for nvim-lspconfig]], false)
+-- Config for: lexima.vim
+time([[Config for lexima.vim]], true)
+vim.cmd('call lexima#set_default_rules()')
+time([[Config for lexima.vim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
-vim.cmd [[ packadd lspsaga.nvim ]]
-
--- Config for: lspsaga.nvim
-require('plugins.lspsaga')
-
 vim.cmd [[ packadd lspkind-nvim ]]
 
 -- Config for: lspkind-nvim

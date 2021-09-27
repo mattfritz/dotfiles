@@ -20,14 +20,9 @@ return require('packer').startup(function(use, use_rocks)
   use {
     'neovim/nvim-lspconfig',
     config = [[require('plugins.lspconfig')]],
-    requires = 'kabouzeid/nvim-lspinstall'
-  }
-  use {
-    'glepnir/lspsaga.nvim',
-    config = [[require('plugins.lspsaga')]],
-    after = {
-      'nvim-lspconfig',
-      'nvim-lspinstall'
+    requires = {
+      'kabouzeid/nvim-lspinstall',
+      'glepnir/lspsaga.nvim'
     }
   }
   use {
