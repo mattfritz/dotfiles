@@ -1,0 +1,51 @@
+[color]
+  ui = true
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red
+  new = green
+[format]
+  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+[apply]
+  whitespace = nowarn
+[push]
+  default = simple
+[core]
+  autocrlf = false
+  editor = nvim
+  excludesfile = ~/.gitignore
+[diff]
+  tool = vimdiff
+  mnemonicprefix = true
+  algorithm = patience
+[rerere]
+  enabled = true
+[user]
+  name = Matt Fritz
+  email = mfritzer@gmail.com
+[fetch]
+  prune = true
+[branch]
+  autosetupmerge = always
+  autosetuprebase = always
+
+# TODO: reconfigure new setup to enable 3-way diff
+# [mergetool "vimdiff"]
+#   cmd="nvim -f -c 'Gdiff' $MERGED"     # use fugitive.vim for 3-way merge
+#   keepbackup=false
+# [merge]
+#   tool = vimdiff
+#   summary = true
+#   verbosity = 1
+#   conflictstyle = diff3
+# [diff]
+#   tool = vimdiff
+#   mnemonicprefix = true
+#   algorithm = patience
+[init]
+	defaultBranch = master

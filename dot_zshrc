@@ -1,0 +1,52 @@
+# zplug
+export ZPLUG_HOME=/usr/local/opt/zplug
+if [ -f $ZPLUG_HOME/init.zsh ]; then
+  source $ZPLUG_HOME/init.zsh
+
+  zstyle ':prezto:*:*' case-sensitive 'no'
+  zstyle ':prezto:*:*' color 'yes'
+  zstyle ':prezto:module:editor' key-bindings 'vi'
+  zstyle ':prezto:module:editor' dot-expansion 'yes'
+  zstyle ':prezto:module:syntax-highlighting' highlighters \
+    'main' \
+    'brackets'
+
+  zplug "modules/environment", from:prezto
+  zplug "modules/editor", from:prezto
+  zplug "modules/history", from:prezto
+  zplug "modules/directory", from:prezto
+  zplug "modules/spectrum", from:prezto
+  zplug "modules/utility", from:prezto
+  zplug "modules/archive", from:prezto
+  zplug "modules/git", from:prezto
+  zplug "modules/ssh", from:prezto
+  zplug "modules/gpg", from:prezto
+
+  zplug "modules/syntax-highlighting", from:prezto
+  zplug "modules/history-substring-search", from:prezto
+  zplug "modules/autosuggestions", from:prezto
+  zplug "modules/completion", from:prezto
+
+  if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+      echo; zplug install
+    fi
+  fi
+
+  zplug load
+
+  # history-substring-search
+  bindkey "$terminfo[kcuu1]" history-substring-search-up
+  bindkey "$terminfo[kcud1]" history-substring-search-down
+  bindkey -M vicmd 'k' history-substring-search-up
+  bindkey -M vicmd 'j' history-substring-search-down
+fi
+
+
+# FZF
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Starship
+[ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
