@@ -1,3 +1,4 @@
+-- Note: More LSP specific mappings are in the 'lspconfig' module
 local function set_keymap(mode, key, action, opts)
   local options = vim.tbl_extend(
     'force',

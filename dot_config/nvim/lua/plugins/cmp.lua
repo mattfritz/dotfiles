@@ -1,6 +1,5 @@
 local fn = vim.fn
 local cmp = require('cmp')
-local lspkind = require('lspkind')
 local luasnip = require('luasnip')
 
 local function t(str)

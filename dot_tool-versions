@@ -1,6 +1,7 @@
-golang 1.16.6
+golang 1.17.3
 neovim nightly
-nodejs 16.6.1
+nodejs lts
 python 3.9.6
-ruby 2.6.6
-yarn 1.22.11
+ruby 2.7.4
+rust 1.56.1
+yarn 1.22.17

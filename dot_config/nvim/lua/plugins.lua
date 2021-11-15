@@ -22,7 +22,9 @@ return require('packer').startup(function(use, use_rocks)
     config = [[require('plugins.lspconfig')]],
     requires = {
       'kabouzeid/nvim-lspinstall',
-      'glepnir/lspsaga.nvim'
+      -- TODO: using forked lspsaga until neovim 0.6.0+ is supported
+      -- 'glepnir/lspsaga.nvim'
+      'tami5/lspsaga.nvim'
     }
   }
   use {
@@ -32,7 +34,7 @@ return require('packer').startup(function(use, use_rocks)
   }
   use {
     'hrsh7th/nvim-cmp',
-    config = [[require('plugins.cmp')]],
+    config = [[require('plugins.cmp-new')]],
     requires = {
       'rafamadriz/friendly-snippets',
       'L3MON4D3/LuaSnip',

@@ -50,3 +50,12 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 # Starship
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
+
+[ -f ~/.secret ] && source ~/.secret
+
+alias av=aws-vault
+alias dc=docker-compose
+alias dev='$HOME/code/homebot/dev/bin/dev'
+alias hdev="docker-compose -f $HOME/code/homebot/hbdev/docker/services.yml -p hbdev"
+alias hbdev="$HOME/code/homebot/hbdev/bin/hbdev"
+alias tools="docker-compose -f $HOME/code/homebot/hbdev/docker/tools.yml -p hbdev"

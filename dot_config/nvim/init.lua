@@ -3,3 +3,6 @@ if require('bootstrap')() then
   require('plugins')
   require('mappings')
 end
+
+-- Debug log for LSP settings
+-- vim.lsp.set_log_level("debug")

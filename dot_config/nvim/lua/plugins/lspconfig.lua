@@ -35,31 +35,34 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap("n", "<space>f", "<Cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
   -- Lspsaga
-  buf_set_keymap('n', '<Leader>gh', [[<Cmd>lua require'lspsaga.provider'.lsp_finder()<CR>]], opts)
-  buf_set_keymap('n', '<silent>gr', [[<Cmd>lua require('lspsaga.rename').rename()<CR>]], opts)
-  buf_set_keymap('n', '<Leader>ca', [[<Cmd>lua require('lspsaga.codeaction').code_action()<CR>]], opts)
-  buf_set_keymap('v', '<Leader>ca', [[:<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>]], opts)
+  buf_set_keymap('n', 'gh', [[<Cmd>lua require'lspsaga.provider'.lsp_finder()<CR>]], opts)
+  buf_set_keymap('n', 'gr', [[<Cmd>lua require('lspsaga.rename').rename()<CR>]], opts)
+  buf_set_keymap('n', 'gx', [[<Cmd>lua require('lspsaga.codeaction').code_action()<CR>]], opts)
+  buf_set_keymap('x', 'gx', [[:<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>]], opts)
 
   -- Lspsaga (scrollable)
-  buf_set_keymap('n', '<silent>K', [[<Cmd>lua require('lspsaga.hover').render_hover_doc()<CR>]], opts)
-  buf_set_keymap('n', '<silent>gs', [[<Cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>]], opts)
-  buf_set_keymap('n', '<silent>gd', [[<Cmd>lua require('lspsaga.provider').preview_definition()<CR>]], opts)
-  buf_set_keymap('n', '<silent><C-f>', [[<Cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>]], opts)
-  buf_set_keymap('n', '<silent><C-b>', [[<Cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>]], opts)
+  buf_set_keymap('n', 'K', [[<Cmd>lua require('lspsaga.hover').render_hover_doc()<CR>]], opts)
+  buf_set_keymap('n', 'gs', [[<Cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>]], opts)
+  buf_set_keymap('n', 'gd', [[<Cmd>lua require('lspsaga.provider').preview_definition()<CR>]], opts)
+  buf_set_keymap('n', '<C-f>', [[<Cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>]], opts)
+  buf_set_keymap('n', '<C-b>', [[<Cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>]], opts)
 
-  buf_set_keymap('n', '<silent><Leader>cd', [[<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>]], opts)
+  buf_set_keymap('n', 'go', [[<Cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>]], opts)
   -- TODO: conflict with config reload
   -- buf_set_keymap('n', '<silent><Leader>cc', [[<cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>]], opts)
-  buf_set_keymap('n', '<silent>]e', [[<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>]], opts)
-  buf_set_keymap('n', '<silent>[e', [[<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>]], opts)
+  buf_set_keymap('n', 'gj', [[<Cmd>Lspsaga diagnostic_jump_next<CR>]], opts)
+  buf_set_keymap('n', 'gk', [[<Cmd>Lspsaga diagnostic_jump_prev<CR>]], opts)
 end
 
 local function setup_servers()
   lspi.setup()
 
   local servers = lspi.installed_servers()
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
   for _, server in pairs(servers) do
     nvim_lsp[server].setup({
+      capabilities = capabilities,
       on_attach = on_attach,
       flags = {
         debounce_text_changes = 150,
