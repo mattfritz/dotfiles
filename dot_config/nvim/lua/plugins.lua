@@ -21,10 +21,11 @@ return require('packer').startup(function(use, use_rocks)
     'neovim/nvim-lspconfig',
     config = [[require('plugins.lspconfig')]],
     requires = {
-      'kabouzeid/nvim-lspinstall',
+      'williamboman/nvim-lsp-installer',
       -- TODO: using forked lspsaga until neovim 0.6.0+ is supported
       -- 'glepnir/lspsaga.nvim'
-      'tami5/lspsaga.nvim'
+      'tami5/lspsaga.nvim',
+      'nanotee/sqls.nvim'
     }
   }
   use {
@@ -79,7 +80,14 @@ return require('packer').startup(function(use, use_rocks)
     setup = [[require('plugins.dispatch')]]
   }
   use 'tpope/vim-dadbod'
-  use 'kristijanhusak/vim-dadbod-ui'
+  use {
+    'kristijanhusak/vim-dadbod-ui',
+    setup = [[
+      vim.g.db_ui_win_position = 'right'
+      vim.g.db_ui_show_database_icon = 1
+      vim.g.db_ui_use_nerd_fonts = 1
+    ]]
+  }
   use 'kristijanhusak/vim-dadbod-completion'
   use 'tpope/vim-rails'
   use 'mhinz/vim-signify'

@@ -176,15 +176,15 @@ _G.packer_plugins = {
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
+  ["nvim-lsp-installer"] = {
+    loaded = true,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
+    url = "https://github.com/williamboman/nvim-lsp-installer"
+  },
   ["nvim-lspconfig"] = {
     after = { "lspkind-nvim" },
     loaded = true,
     only_config = true
-  },
-  ["nvim-lspinstall"] = {
-    loaded = true,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/nvim-lspinstall",
-    url = "https://github.com/kabouzeid/nvim-lspinstall"
   },
   ["nvim-treesitter"] = {
     config = { "require('plugins.treesitter')" },
@@ -213,6 +213,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
+  },
+  ["sqls.nvim"] = {
+    loaded = true,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/sqls.nvim",
+    url = "https://github.com/nanotee/sqls.nvim"
   },
   tabular = {
     loaded = true,
@@ -252,7 +257,8 @@ _G.packer_plugins = {
   },
   ["vim-dadbod-ui"] = {
     loaded = true,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vim-dadbod-ui",
+    needs_bufread = true,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/opt/vim-dadbod-ui",
     url = "https://github.com/kristijanhusak/vim-dadbod-ui"
   },
   ["vim-dispatch"] = {
@@ -341,13 +347,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Setup for: lexima.vim
-time([[Setup for lexima.vim]], true)
-require('plugins.lexima')
-time([[Setup for lexima.vim]], false)
-time([[packadd for lexima.vim]], true)
-vim.cmd [[packadd lexima.vim]]
-time([[packadd for lexima.vim]], false)
 -- Setup for: vim-dispatch
 time([[Setup for vim-dispatch]], true)
 require('plugins.dispatch')
@@ -355,10 +354,43 @@ time([[Setup for vim-dispatch]], false)
 time([[packadd for vim-dispatch]], true)
 vim.cmd [[packadd vim-dispatch]]
 time([[packadd for vim-dispatch]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require('plugins.lspconfig')
-time([[Config for nvim-lspconfig]], false)
+-- Setup for: vim-dadbod-ui
+time([[Setup for vim-dadbod-ui]], true)
+      vim.g.db_ui_win_position = 'right'
+      vim.g.db_ui_show_database_icon = 1
+      vim.g.db_ui_use_nerd_fonts = 1
+    
+time([[Setup for vim-dadbod-ui]], false)
+time([[packadd for vim-dadbod-ui]], true)
+vim.cmd [[packadd vim-dadbod-ui]]
+time([[packadd for vim-dadbod-ui]], false)
+-- Setup for: lexima.vim
+time([[Setup for lexima.vim]], true)
+require('plugins.lexima')
+time([[Setup for lexima.vim]], false)
+time([[packadd for lexima.vim]], true)
+vim.cmd [[packadd lexima.vim]]
+time([[packadd for lexima.vim]], false)
+-- Config for: kommentary
+time([[Config for kommentary]], true)
+require('plugins.kommentary')
+time([[Config for kommentary]], false)
+-- Config for: neon
+time([[Config for neon]], true)
+require('plugins.colors')
+time([[Config for neon]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('plugins.treesitter')
+time([[Config for nvim-treesitter]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require('colorizer').setup()
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: vimwiki
+time([[Config for vimwiki]], true)
+require('plugins.vimwiki')
+time([[Config for vimwiki]], false)
 -- Config for: gitsigns.nvim
 time([[Config for gitsigns.nvim]], true)
 require('plugins.gitsigns')
@@ -367,46 +399,30 @@ time([[Config for gitsigns.nvim]], false)
 time([[Config for telescope.nvim]], true)
 require('plugins.telescope')
 time([[Config for telescope.nvim]], false)
--- Config for: neon
-time([[Config for neon]], true)
-require('plugins.colors')
-time([[Config for neon]], false)
--- Config for: vimwiki
-time([[Config for vimwiki]], true)
-require('plugins.vimwiki')
-time([[Config for vimwiki]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('plugins.treesitter')
-time([[Config for nvim-treesitter]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require('plugins.lualine')
-time([[Config for lualine.nvim]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-require('colorizer').setup()
-time([[Config for nvim-colorizer.lua]], false)
--- Config for: kommentary
-time([[Config for kommentary]], true)
-require('plugins.kommentary')
-time([[Config for kommentary]], false)
--- Config for: vim-test
-time([[Config for vim-test]], true)
-require('plugins.vim-test')
-time([[Config for vim-test]], false)
--- Config for: blamer.nvim
-time([[Config for blamer.nvim]], true)
-require('plugins.blamer')
-time([[Config for blamer.nvim]], false)
--- Config for: lexima.vim
-time([[Config for lexima.vim]], true)
-vim.cmd('call lexima#set_default_rules()')
-time([[Config for lexima.vim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 require('plugins.cmp-new')
 time([[Config for nvim-cmp]], false)
+-- Config for: lexima.vim
+time([[Config for lexima.vim]], true)
+vim.cmd('call lexima#set_default_rules()')
+time([[Config for lexima.vim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('plugins.lualine')
+time([[Config for lualine.nvim]], false)
+-- Config for: blamer.nvim
+time([[Config for blamer.nvim]], true)
+require('plugins.blamer')
+time([[Config for blamer.nvim]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require('plugins.lspconfig')
+time([[Config for nvim-lspconfig]], false)
+-- Config for: vim-test
+time([[Config for vim-test]], true)
+require('plugins.vim-test')
+time([[Config for vim-test]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd lspkind-nvim ]]

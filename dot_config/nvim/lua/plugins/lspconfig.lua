@@ -1,10 +1,7 @@
-local nvim_lsp = require('lspconfig')
-local lspi = require('lspinstall')
+local lsp_installer = require('nvim-lsp-installer')
 local saga = require('lspsaga')
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -54,29 +51,57 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gk', [[<Cmd>Lspsaga diagnostic_jump_prev<CR>]], opts)
 end
 
-local function setup_servers()
-  lspi.setup()
+-- LSP Installer
+lsp_installer.settings({
+  ui = {
+    icons = {
+      server_installed = "✓",
+      server_pending = "➜",
+      server_uninstalled = "✗"
+    }
+  }
+})
 
-  local servers = lspi.installed_servers()
+lsp_installer.on_server_ready(function(server)
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local opts = {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
 
-  for _, server in pairs(servers) do
-    nvim_lsp[server].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      flags = {
-        debounce_text_changes = 150,
+  if server.name == 'sumneko_lua' then
+    opts.settings = {
+      Lua = {
+        diagnostics = {
+          globals = {'vim'},
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        telemetry = {
+          enable = false,
+        },
       }
-    })
+    }
+  elseif server.name == 'sqls' then
+    opts.on_attach = function(client, bufnr)
+      client.resolved_capabilities.execute_command = true
+      client.commands = require('sqls').commands
+
+      on_attach(client, bufnr)
+
+      -- This is janky, but is required to load commands
+      require('sqls').setup({ picker = 'telescope' })
+    end
   end
 
+  -- This setup() function is exactly the same as lspconfig's setup function.
+  -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+  server:setup(opts)
+
   saga.init_lsp_saga()
-end
-
-setup_servers()
-
--- Post LspInstall reload
-lspi.post_install_hook = function ()
-  setup_servers() -- Rerun setup
-  vim.cmd("bufdo e") -- Autostart
-end
+end)

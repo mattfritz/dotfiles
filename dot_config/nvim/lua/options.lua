@@ -1,16 +1,11 @@
---local jellybeans = vim.api.nvim_eval([[getcompletion('jellybeans', 'color')]])[1]
---
---if jellybeans then
---  vim.cmd([[ colorscheme jellybeans ]])
---end
-
 local options     = {
   autoindent    = true,
   autoread      = true,
+  backupdir     = '/tmp/nvim/backup//',
   clipboard     = 'unnamedplus',
   cmdheight     = 1,
   completeopt   = 'menuone,noselect',
-  directory     = vim.opt.directory:prepend('$HOME/.local/share/nvim/swap//'),
+  directory     = vim.opt.directory:prepend('/tmp/nvim/swap//'),
   expandtab     = true,
   hidden        = true,
   ignorecase    = true,
@@ -25,7 +20,7 @@ local options     = {
   switchbuf     = vim.opt.switchbuf + 'usetab,newtab',
   termguicolors = true,
   timeoutlen    = 400,
-  undodir       = '.local/share/nvim/swap',
+  undodir       = '/tmp/nvim/undo//',
   undofile      = true,
   updatetime    = 250,
 }

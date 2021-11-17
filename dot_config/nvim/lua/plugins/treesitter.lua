@@ -4,7 +4,8 @@ require('nvim-treesitter.configs').setup {
     enable = true,
     additional_vim_regex_highlighting = false,
   },
-  indent = {
-    enable = true
-  }
+  -- TODO: enable this again after indentation bugs are fixed
+  -- indent = {
+  --   enable = true
+  -- }
 }

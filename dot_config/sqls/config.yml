@@ -1,0 +1,7 @@
+connections:
+  - alias: mikasa_development
+    driver: postgresql
+    dataSourceName: postgres://postgres:secret@localhost:5432/mikasa_development
+  - alias: lockbox_development
+    driver: postgresql
+    dataSourceName: postgres://postgres:secret@localhost:5432/lockbox_development

@@ -9,6 +9,9 @@ local function set_keymap(mode, key, action, opts)
   vim.api.nvim_set_keymap(mode, key, action, options)
 end
 
+-- Recopy pasted visual selection instead of overwriting buffer
+set_keymap('v', 'p', 'pgvy')
+
 -- Config shortcuts
 set_keymap('n', '<Leader>cc', [[<Cmd>luafile %<CR> | <Cmd>echo "Sourced file"<CR>]])
 
@@ -25,8 +28,8 @@ set_keymap('n', '<Leader>fgb', [[<Cmd>Telescope git_branches<CR>]])
 set_keymap('n', '<Leader>fgc', [[<Cmd>Telescope git_commits<CR>]])
 set_keymap('n', '<Leader>fgs', [[<Cmd>Telescope git_status<CR>]])
 
--- Neogit
-set_keymap('n', '<Leader>gg', [[<Cmd>Neogit<CR>]])
+-- Neogit (reevaluate)
+-- set_keymap('n', '<Leader>gg', [[<Cmd>Neogit<CR>]])
 
 -- Pane switching
 set_keymap('n', '<C-h>', [[<C-w>h]])
