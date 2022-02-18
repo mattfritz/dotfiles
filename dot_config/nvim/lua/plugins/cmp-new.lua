@@ -1,10 +1,12 @@
 local cmp = require('cmp')
+local compare = cmp.config.compare
+local lspkind = require('lspkind')
 
 cmp.setup({
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
+  formatting = {
+    format = lspkind.cmp_format({
+      mode = 'symbol_text'
+    })
   },
   mapping = {
     ['<Tab>'] = function(fallback)
@@ -40,23 +42,43 @@ cmp.setup({
     }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      compare.offset,
+      compare.exact,
+      compare.score,
+      require('cmp-under-comparator').under,
+      compare.recently_used,
+      compare.kind,
+      compare.sort_text,
+      compare.length,
+      compare.order,
+    },
+  },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
+    { name = 'nvim_lsp_signature_help' },
     { name = 'luasnip' },
     { name = 'nvim_lua' },
     { name = 'path' },
     { name = 'treesitter' }
   }, {
     { name = 'buffer' },
-  })
+  }),
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
--- cmp.setup.cmdline('/', {
---   sources = {
---     { name = 'buffer' }
---   }
--- })
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {

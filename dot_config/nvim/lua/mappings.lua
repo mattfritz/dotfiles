@@ -18,11 +18,17 @@ set_keymap('n', '<Leader>cc', [[<Cmd>luafile %<CR> | <Cmd>echo "Sourced file"<CR
 -- Telescope
 set_keymap('n', '<Leader>ff', [[<Cmd>Telescope find_files<CR>]])
 set_keymap('n', '<Leader>fd', [[<Cmd>Telescope file_browser<CR>]])
-set_keymap('n', '<Leader>fg', [[<Cmd>Telescope live_grep<CR>]])
 set_keymap('n', '<Leader>fs', [[<Cmd>Telescope grep_string<CR>]])
+
+-- TODO: Workaround until Telescope implements fuzzy live_grep: https://github.com/nvim-telescope/telescope.nvim/issues/564
+-- set_keymap('n', '<Leader>fg', [[<Cmd>Telescope live_grep<CR>]])
+set_keymap('n', '<Leader>fg', [[:lua vim.ui.input({prompt = 'Enter search term: '}, function(input) require('telescope.builtin').grep_string({search = input}) end)<CR>]])
+-- ENDTODO
+
 set_keymap('n', '<Leader>fb', [[<Cmd>Telescope buffers<CR>]])
 set_keymap('n', '<Leader>fh', [[<Cmd>Telescope help_tags<CR>]])
 set_keymap('n', '<Leader>fo', [[<Cmd>Telescope oldfiles<CR>]])
+set_keymap('n', '<Leader>fv', [[<Cmd>Telescope treesitter<CR>]])
 set_keymap('n', '<Leader>fp', [[:lua require'telescope'.extensions.project.project{}<CR>]])
 set_keymap('n', '<Leader>fgb', [[<Cmd>Telescope git_branches<CR>]])
 set_keymap('n', '<Leader>fgc', [[<Cmd>Telescope git_commits<CR>]])

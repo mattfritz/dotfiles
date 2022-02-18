@@ -57,7 +57,7 @@ end
 time([[Luarocks path setup]], false)
 time([[try_loadstring definition]], true)
 local function try_loadstring(s, component, name)
-  local success, result = pcall(loadstring(s))
+  local success, result = pcall(loadstring(s), name, _G.packer_plugins[name])
   if not success then
     vim.schedule(function()
       vim.api.nvim_notify('packer.nvim: Error running ' .. component .. ' for ' .. name .. ': ' .. result, vim.log.levels.ERROR, {})
@@ -85,10 +85,25 @@ _G.packer_plugins = {
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/cmp-buffer",
     url = "https://github.com/hrsh7th/cmp-buffer"
   },
+  ["cmp-cmdline"] = {
+    loaded = true,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
+    url = "https://github.com/hrsh7th/cmp-cmdline"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-lsp-signature-help"] = {
+    loaded = true,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp-signature-help",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp-signature-help"
+  },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    url = "https://github.com/hrsh7th/cmp-nvim-lua"
   },
   ["cmp-path"] = {
     loaded = true,
@@ -99,6 +114,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/cmp-treesitter",
     url = "https://github.com/ray-x/cmp-treesitter"
+  },
+  ["cmp-under-comparator"] = {
+    loaded = true,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/cmp-under-comparator",
+    url = "https://github.com/lukas-reineke/cmp-under-comparator"
   },
   cmp_luasnip = {
     loaded = true,
@@ -133,18 +153,15 @@ _G.packer_plugins = {
     url = "https://github.com/b3nj5m1n/kommentary"
   },
   ["lexima.vim"] = {
-    config = { "vim.cmd('call lexima#set_default_rules()')" },
+    config = { "vim.cmd('autocmd FileType clojure let b:lexima_disabled=1')" },
     loaded = true,
     needs_bufread = false,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/opt/lexima.vim",
     url = "https://github.com/cohama/lexima.vim"
   },
   ["lspkind-nvim"] = {
-    config = { "require('plugins.lspkind')" },
-    load_after = {},
     loaded = true,
-    needs_bufread = false,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/opt/lspkind-nvim",
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
   },
   ["lspsaga.nvim"] = {
@@ -182,9 +199,10 @@ _G.packer_plugins = {
     url = "https://github.com/williamboman/nvim-lsp-installer"
   },
   ["nvim-lspconfig"] = {
-    after = { "lspkind-nvim" },
+    config = { "require('plugins.lspconfig')" },
     loaded = true,
-    only_config = true
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
     config = { "require('plugins.treesitter')" },
@@ -223,6 +241,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/tabular",
     url = "https://github.com/godlygeek/tabular"
+  },
+  ["telescope-file-browser.nvim"] = {
+    loaded = true,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
+    url = "https://github.com/nvim-telescope/telescope-file-browser.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
@@ -343,17 +366,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vimwiki",
     url = "https://github.com/vimwiki/vimwiki"
+  },
+  ["vista.vim"] = {
+    config = { "      vim.g.vista_default_executive = 'nvim_lsp'\n      vim.g.vista_icon_indent = {'╰─▸ ', '├─▸ '}\n      vim.g.vista_fzf_preview = {'right:50%'}\n    " },
+    loaded = true,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vista.vim",
+    url = "https://github.com/liuchengxu/vista.vim"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Setup for: vim-dispatch
-time([[Setup for vim-dispatch]], true)
-require('plugins.dispatch')
-time([[Setup for vim-dispatch]], false)
-time([[packadd for vim-dispatch]], true)
-vim.cmd [[packadd vim-dispatch]]
-time([[packadd for vim-dispatch]], false)
 -- Setup for: vim-dadbod-ui
 time([[Setup for vim-dadbod-ui]], true)
       vim.g.db_ui_win_position = 'right'
@@ -371,66 +393,72 @@ time([[Setup for lexima.vim]], false)
 time([[packadd for lexima.vim]], true)
 vim.cmd [[packadd lexima.vim]]
 time([[packadd for lexima.vim]], false)
--- Config for: kommentary
-time([[Config for kommentary]], true)
-require('plugins.kommentary')
-time([[Config for kommentary]], false)
--- Config for: neon
-time([[Config for neon]], true)
-require('plugins.colors')
-time([[Config for neon]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('plugins.treesitter')
-time([[Config for nvim-treesitter]], false)
+-- Setup for: vim-dispatch
+time([[Setup for vim-dispatch]], true)
+require('plugins.dispatch')
+time([[Setup for vim-dispatch]], false)
+time([[packadd for vim-dispatch]], true)
+vim.cmd [[packadd vim-dispatch]]
+time([[packadd for vim-dispatch]], false)
+-- Config for: vista.vim
+time([[Config for vista.vim]], true)
+      vim.g.vista_default_executive = 'nvim_lsp'
+      vim.g.vista_icon_indent = {'╰─▸ ', '├─▸ '}
+      vim.g.vista_fzf_preview = {'right:50%'}
+    
+time([[Config for vista.vim]], false)
 -- Config for: nvim-colorizer.lua
 time([[Config for nvim-colorizer.lua]], true)
 require('colorizer').setup()
 time([[Config for nvim-colorizer.lua]], false)
--- Config for: vimwiki
-time([[Config for vimwiki]], true)
-require('plugins.vimwiki')
-time([[Config for vimwiki]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require('plugins.gitsigns')
-time([[Config for gitsigns.nvim]], false)
+-- Config for: neon
+time([[Config for neon]], true)
+require('plugins.colors')
+time([[Config for neon]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 require('plugins.telescope')
 time([[Config for telescope.nvim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('plugins.cmp-new')
-time([[Config for nvim-cmp]], false)
--- Config for: lexima.vim
-time([[Config for lexima.vim]], true)
-vim.cmd('call lexima#set_default_rules()')
-time([[Config for lexima.vim]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 require('plugins.lualine')
 time([[Config for lualine.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('plugins.treesitter')
+time([[Config for nvim-treesitter]], false)
+-- Config for: kommentary
+time([[Config for kommentary]], true)
+require('plugins.kommentary')
+time([[Config for kommentary]], false)
+-- Config for: lexima.vim
+time([[Config for lexima.vim]], true)
+vim.cmd('autocmd FileType clojure let b:lexima_disabled=1')
+time([[Config for lexima.vim]], false)
 -- Config for: blamer.nvim
 time([[Config for blamer.nvim]], true)
 require('plugins.blamer')
 time([[Config for blamer.nvim]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require('plugins.lspconfig')
-time([[Config for nvim-lspconfig]], false)
 -- Config for: vim-test
 time([[Config for vim-test]], true)
 require('plugins.vim-test')
 time([[Config for vim-test]], false)
--- Load plugins in order defined by `after`
-time([[Sequenced loading]], true)
-vim.cmd [[ packadd lspkind-nvim ]]
-
--- Config for: lspkind-nvim
-require('plugins.lspkind')
-
-time([[Sequenced loading]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('plugins.cmp-new')
+time([[Config for nvim-cmp]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require('plugins.gitsigns')
+time([[Config for gitsigns.nvim]], false)
+-- Config for: vimwiki
+time([[Config for vimwiki]], true)
+require('plugins.vimwiki')
+time([[Config for vimwiki]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require('plugins.lspconfig')
+time([[Config for nvim-lspconfig]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
@@ -443,5 +471,6 @@ if should_profile then save_profiles() end
 end)
 
 if not no_errors then
+  error_msg = error_msg:gsub('"', '\\"')
   vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
 end

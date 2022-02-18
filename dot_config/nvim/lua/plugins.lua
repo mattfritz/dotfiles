@@ -1,3 +1,4 @@
+-- Plugin specification docs: https://github.com/wbthomason/packer.nvim#specifying-plugins
 vim.cmd [[packadd packer.nvim]]
 vim.cmd [[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]]
 
@@ -13,8 +14,9 @@ return require('packer').startup(function(use, use_rocks)
     requires = {
       {'nvim-lua/popup.nvim'},
       {'nvim-lua/plenary.nvim'},
+      {'nvim-telescope/telescope-file-browser.nvim'},
       {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
-      {'nvim-telescope/telescope-project.nvim'}
+      {'nvim-telescope/telescope-project.nvim'},
     }
   }
   use {
@@ -29,11 +31,6 @@ return require('packer').startup(function(use, use_rocks)
     }
   }
   use {
-    'onsails/lspkind-nvim',
-    config = [[require('plugins.lspkind')]],
-    after = 'nvim-lspconfig'
-  }
-  use {
     'hrsh7th/nvim-cmp',
     config = [[require('plugins.cmp-new')]],
     requires = {
@@ -42,8 +39,13 @@ return require('packer').startup(function(use, use_rocks)
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-nvim-lua',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
+      'onsails/lspkind-nvim',
       'saadparwaiz1/cmp_luasnip',
-      'ray-x/cmp-treesitter'
+      'ray-x/cmp-treesitter',
+      'lukas-reineke/cmp-under-comparator',
     }
   }
   use {
@@ -58,7 +60,7 @@ return require('packer').startup(function(use, use_rocks)
   use 'godlygeek/tabular'
   use {
     'cohama/lexima.vim',
-    config = [[vim.cmd('call lexima#set_default_rules()')]],
+    config = [[vim.cmd('autocmd FileType clojure let b:lexima_disabled=1')]],
     setup = [[require('plugins.lexima')]]
   }
   use 'machakann/vim-sandwich'
@@ -124,4 +126,13 @@ return require('packer').startup(function(use, use_rocks)
     'vimwiki/vimwiki',
     config = [[require('plugins.vimwiki')]]
   }
+  use {
+    'liuchengxu/vista.vim',
+    config = [[
+      vim.g.vista_default_executive = 'nvim_lsp'
+      vim.g.vista_icon_indent = {'╰─▸ ', '├─▸ '}
+      vim.g.vista_fzf_preview = {'right:50%'}
+    ]],
+  }
 end)
+

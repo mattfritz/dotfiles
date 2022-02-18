@@ -1,3 +1,3 @@
 require('lspkind').init {
-  with_text = false
+  mode = 'symbol_text'
 }
