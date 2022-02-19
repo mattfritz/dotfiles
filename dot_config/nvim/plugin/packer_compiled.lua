@@ -175,11 +175,11 @@ _G.packer_plugins = {
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/hoob3rt/lualine.nvim"
   },
-  neon = {
+  ["nightfox.nvim"] = {
     config = { "require('plugins.colors')" },
     loaded = true,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/neon",
-    url = "https://github.com/rafamadriz/neon"
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/edeneast/nightfox.nvim"
   },
   ["nvim-cmp"] = {
     config = { "require('plugins.cmp-new')" },
@@ -376,16 +376,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Setup for: vim-dadbod-ui
-time([[Setup for vim-dadbod-ui]], true)
-      vim.g.db_ui_win_position = 'right'
-      vim.g.db_ui_show_database_icon = 1
-      vim.g.db_ui_use_nerd_fonts = 1
-    
-time([[Setup for vim-dadbod-ui]], false)
-time([[packadd for vim-dadbod-ui]], true)
-vim.cmd [[packadd vim-dadbod-ui]]
-time([[packadd for vim-dadbod-ui]], false)
 -- Setup for: lexima.vim
 time([[Setup for lexima.vim]], true)
 require('plugins.lexima')
@@ -400,29 +390,16 @@ time([[Setup for vim-dispatch]], false)
 time([[packadd for vim-dispatch]], true)
 vim.cmd [[packadd vim-dispatch]]
 time([[packadd for vim-dispatch]], false)
--- Config for: vista.vim
-time([[Config for vista.vim]], true)
-      vim.g.vista_default_executive = 'nvim_lsp'
-      vim.g.vista_icon_indent = {'╰─▸ ', '├─▸ '}
-      vim.g.vista_fzf_preview = {'right:50%'}
+-- Setup for: vim-dadbod-ui
+time([[Setup for vim-dadbod-ui]], true)
+      vim.g.db_ui_win_position = 'right'
+      vim.g.db_ui_show_database_icon = 1
+      vim.g.db_ui_use_nerd_fonts = 1
     
-time([[Config for vista.vim]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-require('colorizer').setup()
-time([[Config for nvim-colorizer.lua]], false)
--- Config for: neon
-time([[Config for neon]], true)
-require('plugins.colors')
-time([[Config for neon]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require('plugins.telescope')
-time([[Config for telescope.nvim]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require('plugins.lualine')
-time([[Config for lualine.nvim]], false)
+time([[Setup for vim-dadbod-ui]], false)
+time([[packadd for vim-dadbod-ui]], true)
+vim.cmd [[packadd vim-dadbod-ui]]
+time([[packadd for vim-dadbod-ui]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)
 require('plugins.treesitter')
@@ -431,34 +408,57 @@ time([[Config for nvim-treesitter]], false)
 time([[Config for kommentary]], true)
 require('plugins.kommentary')
 time([[Config for kommentary]], false)
+-- Config for: nightfox.nvim
+time([[Config for nightfox.nvim]], true)
+require('plugins.colors')
+time([[Config for nightfox.nvim]], false)
 -- Config for: lexima.vim
 time([[Config for lexima.vim]], true)
 vim.cmd('autocmd FileType clojure let b:lexima_disabled=1')
 time([[Config for lexima.vim]], false)
--- Config for: blamer.nvim
-time([[Config for blamer.nvim]], true)
-require('plugins.blamer')
-time([[Config for blamer.nvim]], false)
 -- Config for: vim-test
 time([[Config for vim-test]], true)
 require('plugins.vim-test')
 time([[Config for vim-test]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('plugins.cmp-new')
-time([[Config for nvim-cmp]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require('plugins.gitsigns')
-time([[Config for gitsigns.nvim]], false)
 -- Config for: vimwiki
 time([[Config for vimwiki]], true)
 require('plugins.vimwiki')
 time([[Config for vimwiki]], false)
+-- Config for: blamer.nvim
+time([[Config for blamer.nvim]], true)
+require('plugins.blamer')
+time([[Config for blamer.nvim]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require('plugins.gitsigns')
+time([[Config for gitsigns.nvim]], false)
+-- Config for: vista.vim
+time([[Config for vista.vim]], true)
+      vim.g.vista_default_executive = 'nvim_lsp'
+      vim.g.vista_icon_indent = {'╰─▸ ', '├─▸ '}
+      vim.g.vista_fzf_preview = {'right:50%'}
+    
+time([[Config for vista.vim]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require('plugins.telescope')
+time([[Config for telescope.nvim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require('colorizer').setup()
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('plugins.cmp-new')
+time([[Config for nvim-cmp]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 require('plugins.lspconfig')
 time([[Config for nvim-lspconfig]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('plugins.lualine')
+time([[Config for lualine.nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads

@@ -54,7 +54,8 @@ return require('packer').startup(function(use, use_rocks)
     run = ':TSUpdate'
   }
   use {
-    'rafamadriz/neon',
+    -- 'rafamadriz/neon',
+    'edeneast/nightfox.nvim',
     config = [[require('plugins.colors')]]
   }
   use 'godlygeek/tabular'
