@@ -9,6 +9,12 @@ local function set_keymap(mode, key, action, opts)
   vim.api.nvim_set_keymap(mode, key, action, options)
 end
 
+-- Open LSP debug logs
+set_keymap('n', '<Leader>dbg', [[<Cmd>lua vim.cmd('tabe'..vim.lsp.get_log_path())<CR>]])
+
+-- Install gems for solargraph from bundler source
+set_keymap('n', '<Leader>bi', [[<Cmd>!GEM_HOME="~/.local/share/nvim/lsp_servers/solargraph" GEM_PATH="~/.local/share/nvim/lsp_servers/solargraph" bundle install<CR>]])
+
 -- Recopy pasted visual selection instead of overwriting buffer
 set_keymap('v', 'p', 'pgvy')
 

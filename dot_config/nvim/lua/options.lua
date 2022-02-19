@@ -12,6 +12,7 @@ local options     = {
   mouse         = 'a',
   number        = true,
   numberwidth   = 2,
+  pumheight     = 20,
   shiftwidth    = 2,
   signcolumn    = 'yes',
   smartindent   = true,

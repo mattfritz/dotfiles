@@ -53,6 +53,7 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 [ -f ~/.secret ] && source ~/.secret
 
+alias nvimdb=nvim --cmd 'lua vim.lsp.set_log_level("debug")'
 alias av=aws-vault
 alias dc=docker-compose
 alias dev='$HOME/code/homebot/dev/bin/dev'
