@@ -1,7 +1,7 @@
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'nightfox'
+    theme = 'auto'
   },
   sections = {
     lualine_x = {
@@ -9,5 +9,9 @@ require('lualine').setup {
       'encoding',
       'filetype'
     }
+  },
+  extensions = {
+    'fugitive',
+    'quickfix',
   }
 }

@@ -14,6 +14,7 @@ local options     = {
   numberwidth   = 2,
   pumheight     = 20,
   shiftwidth    = 2,
+  showtabline   = 2, -- always show tabline
   signcolumn    = 'yes',
   smartindent   = true,
   splitbelow    = true,

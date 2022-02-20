@@ -54,8 +54,8 @@ return require('packer').startup(function(use, use_rocks)
     run = ':TSUpdate'
   }
   use {
-    -- 'rafamadriz/neon',
-    'edeneast/nightfox.nvim',
+    -- 'edeneast/nightfox.nvim',
+    'ChristianChiarulli/nvcode-color-schemes.vim',
     config = [[require('plugins.colors')]]
   }
   use 'godlygeek/tabular'
@@ -69,6 +69,11 @@ return require('packer').startup(function(use, use_rocks)
     'hoob3rt/lualine.nvim',
     config = [[require('plugins.lualine')]],
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
+  }
+  use {
+    'alvarosevilla95/luatab.nvim',
+    config = [[require('plugins.luatab')]],
+    requires = 'kyazdani42/nvim-web-devicons'
   }
   use 'tpope/vim-surround'
   use 'tpope/vim-fugitive'

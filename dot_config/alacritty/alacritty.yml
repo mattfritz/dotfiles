@@ -337,34 +337,34 @@ font:
 # Nightfox Alacritty Colors
 # Style: duskfox
 # Upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/duskfox/nightfox_alacritty.yml
-colors:
-  # Default colors
-  primary:
-    background: '0x232136'
-    foreground: '0xe0def4'
-  # Normal colors
-  normal:
-    black:   '0x393552'
-    red:     '0xeb6f92'
-    green:   '0xa3be8c'
-    yellow:  '0xf6c177'
-    blue:    '0x569FBA'
-    magenta: '0xc4a7e7'
-    cyan:    '0x9ccfd8'
-    white:   '0xe0def4'
-  # Bright colors
-  bright:
-    black:   '0x47407d'
-    red:     '0xf083a2'
-    green:   '0xb1d196'
-    yellow:  '0xf9cb8c'
-    blue:    '0x65b1cd'
-    magenta: '0xccb1ed'
-    cyan:    '0xa6dae3'
-    white:   '0xe2e0f7'
-  indexed_colors:
-    - { index: 16, color: '0xea9a97' }
-    - { index: 17, color: '0xEB98C3' }
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x232136'
+#     foreground: '0xe0def4'
+#   # Normal colors
+#   normal:
+#     black:   '0x393552'
+#     red:     '0xeb6f92'
+#     green:   '0xa3be8c'
+#     yellow:  '0xf6c177'
+#     blue:    '0x569FBA'
+#     magenta: '0xc4a7e7'
+#     cyan:    '0x9ccfd8'
+#     white:   '0xe0def4'
+#   # Bright colors
+#   bright:
+#     black:   '0x47407d'
+#     red:     '0xf083a2'
+#     green:   '0xb1d196'
+#     yellow:  '0xf9cb8c'
+#     blue:    '0x65b1cd'
+#     magenta: '0xccb1ed'
+#     cyan:    '0xa6dae3'
+#     white:   '0xe2e0f7'
+#   indexed_colors:
+#     - { index: 16, color: '0xea9a97' }
+#     - { index: 17, color: '0xEB98C3' }
 
 # Colors (Night Owl)
 # colors:
@@ -403,38 +403,38 @@ colors:
 #     white:   '#ffffff'
 
 # Colors (Jellybeans)
-# colors:
-#   # Default colors
-#   primary:
-#     background: '#161616'
-#     foreground: '#e4e4e4'
+colors:
+  # Default colors
+  primary:
+    background: '#161616'
+    foreground: '#e4e4e4'
 
-#   # Cursor volors
-#   cursor:
-#     text: '#feffff'
-#     cursor: '#ffb472'
+  # Cursor volors
+  cursor:
+    text: '#feffff'
+    cursor: '#ffb472'
 
-#   # Normal colors
-#   normal:
-#     black:   '#a3a3a3'
-#     red:     '#e98885'
-#     green:   '#a3c38b'
-#     yellow:  '#ffc68d'
-#     blue:    '#a6cae2'
-#     magenta: '#e7cdfb'
-#     cyan:    '#00a69f'
-#     white:   '#e4e4e4'
+  # Normal colors
+  normal:
+    black:   '#a3a3a3'
+    red:     '#e98885'
+    green:   '#a3c38b'
+    yellow:  '#ffc68d'
+    blue:    '#a6cae2'
+    magenta: '#e7cdfb'
+    cyan:    '#00a69f'
+    white:   '#e4e4e4'
 
-#   # Bright colors
-#   bright:
-#     black:   '#c8c8c8'
-#     red:     '#ffb2b0'
-#     green:   '#c8e2b9'
-#     yellow:  '#ffe1af'
-#     blue:    '#bddff7'
-#     magenta: '#fce2ff'
-#     cyan:    '#0bbdb6'
-#     white:   '#feffff'
+  # Bright colors
+  bright:
+    black:   '#c8c8c8'
+    red:     '#ffb2b0'
+    green:   '#c8e2b9'
+    yellow:  '#ffe1af'
+    blue:    '#bddff7'
+    magenta: '#fce2ff'
+    cyan:    '#0bbdb6'
+    white:   '#feffff'
 
 #   # Selection colors
 #   selection:
