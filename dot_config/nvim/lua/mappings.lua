@@ -9,7 +9,7 @@ local function set_keymap(mode, key, action, opts)
   vim.api.nvim_set_keymap(mode, key, action, options)
 end
 
--- Open LSP debug logs
+-- Open LSP debug logs (requires running in debug mode, aliased to `nvimdb`
 set_keymap('n', '<Leader>dbg', [[<Cmd>lua vim.cmd('tabe'..vim.lsp.get_log_path())<CR>]])
 
 -- Install gems for solargraph from bundler source
@@ -37,8 +37,6 @@ set_keymap('n', '<Leader>fo', [[<Cmd>Telescope oldfiles<CR>]])
 set_keymap('n', '<Leader>fv', [[<Cmd>Telescope treesitter<CR>]])
 set_keymap('n', '<Leader>fp', [[:lua require'telescope'.extensions.project.project{}<CR>]])
 set_keymap('n', '<Leader>fgb', [[<Cmd>Telescope git_branches<CR>]])
-set_keymap('n', '<Leader>fgc', [[<Cmd>Telescope git_commits<CR>]])
-set_keymap('n', '<Leader>fgs', [[<Cmd>Telescope git_status<CR>]])
 
 -- Neogit (reevaluate)
 -- set_keymap('n', '<Leader>gg', [[<Cmd>Neogit<CR>]])

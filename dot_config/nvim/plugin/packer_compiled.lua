@@ -74,12 +74,6 @@ _G.packer_plugins = {
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ["blamer.nvim"] = {
-    config = { "require('plugins.blamer')" },
-    loaded = true,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/blamer.nvim",
-    url = "https://github.com/APZelos/blamer.nvim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -153,10 +147,9 @@ _G.packer_plugins = {
     url = "https://github.com/b3nj5m1n/kommentary"
   },
   ["lexima.vim"] = {
-    config = { "vim.cmd('autocmd FileType clojure let b:lexima_disabled=1')" },
+    config = { "vim.cmd('autocmd FileType TelescopePrompt let b:lexima_disabled=1')" },
     loaded = true,
-    needs_bufread = false,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/opt/lexima.vim",
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/lexima.vim",
     url = "https://github.com/cohama/lexima.vim"
   },
   ["lspkind-nvim"] = {
@@ -346,11 +339,6 @@ _G.packer_plugins = {
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vim-signature",
     url = "https://github.com/kshenoy/vim-signature"
   },
-  ["vim-signify"] = {
-    loaded = true,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vim-signify",
-    url = "https://github.com/mhinz/vim-signify"
-  },
   ["vim-surround"] = {
     loaded = true,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vim-surround",
@@ -367,12 +355,6 @@ _G.packer_plugins = {
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
     url = "https://github.com/christoomey/vim-tmux-navigator"
   },
-  vimwiki = {
-    config = { "require('plugins.vimwiki')" },
-    loaded = true,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vimwiki",
-    url = "https://github.com/vimwiki/vimwiki"
-  },
   ["vista.vim"] = {
     config = { "      vim.g.vista_default_executive = 'nvim_lsp'\n      vim.g.vista_icon_indent = {'╰─▸ ', '├─▸ '}\n      vim.g.vista_fzf_preview = {'right:50%'}\n    " },
     loaded = true,
@@ -382,13 +364,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Setup for: vim-dispatch
-time([[Setup for vim-dispatch]], true)
-require('plugins.dispatch')
-time([[Setup for vim-dispatch]], false)
-time([[packadd for vim-dispatch]], true)
-vim.cmd [[packadd vim-dispatch]]
-time([[packadd for vim-dispatch]], false)
 -- Setup for: vim-dadbod-ui
 time([[Setup for vim-dadbod-ui]], true)
       vim.g.db_ui_win_position = 'right'
@@ -399,33 +374,52 @@ time([[Setup for vim-dadbod-ui]], false)
 time([[packadd for vim-dadbod-ui]], true)
 vim.cmd [[packadd vim-dadbod-ui]]
 time([[packadd for vim-dadbod-ui]], false)
--- Setup for: lexima.vim
-time([[Setup for lexima.vim]], true)
-require('plugins.lexima')
-time([[Setup for lexima.vim]], false)
-time([[packadd for lexima.vim]], true)
-vim.cmd [[packadd lexima.vim]]
-time([[packadd for lexima.vim]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-require('colorizer').setup()
-time([[Config for nvim-colorizer.lua]], false)
+-- Setup for: vim-dispatch
+time([[Setup for vim-dispatch]], true)
+require('plugins.dispatch')
+time([[Setup for vim-dispatch]], false)
+time([[packadd for vim-dispatch]], true)
+vim.cmd [[packadd vim-dispatch]]
+time([[packadd for vim-dispatch]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require('plugins.telescope')
+time([[Config for telescope.nvim]], false)
 -- Config for: luatab.nvim
 time([[Config for luatab.nvim]], true)
 require('plugins.luatab')
 time([[Config for luatab.nvim]], false)
--- Config for: blamer.nvim
-time([[Config for blamer.nvim]], true)
-require('plugins.blamer')
-time([[Config for blamer.nvim]], false)
 -- Config for: kommentary
 time([[Config for kommentary]], true)
 require('plugins.kommentary')
 time([[Config for kommentary]], false)
--- Config for: vimwiki
-time([[Config for vimwiki]], true)
-require('plugins.vimwiki')
-time([[Config for vimwiki]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('plugins.treesitter')
+time([[Config for nvim-treesitter]], false)
+-- Config for: nvcode-color-schemes.vim
+time([[Config for nvcode-color-schemes.vim]], true)
+require('plugins.colors')
+time([[Config for nvcode-color-schemes.vim]], false)
+-- Config for: lexima.vim
+time([[Config for lexima.vim]], true)
+vim.cmd('autocmd FileType TelescopePrompt let b:lexima_disabled=1')
+time([[Config for lexima.vim]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('plugins.cmp-new')
+time([[Config for nvim-cmp]], false)
+-- Config for: vista.vim
+time([[Config for vista.vim]], true)
+      vim.g.vista_default_executive = 'nvim_lsp'
+      vim.g.vista_icon_indent = {'╰─▸ ', '├─▸ '}
+      vim.g.vista_fzf_preview = {'right:50%'}
+    
+time([[Config for vista.vim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require('colorizer').setup()
+time([[Config for nvim-colorizer.lua]], false)
 -- Config for: gitsigns.nvim
 time([[Config for gitsigns.nvim]], true)
 require('plugins.gitsigns')
@@ -438,33 +432,6 @@ time([[Config for nvim-lspconfig]], false)
 time([[Config for lualine.nvim]], true)
 require('plugins.lualine')
 time([[Config for lualine.nvim]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require('plugins.telescope')
-time([[Config for telescope.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('plugins.treesitter')
-time([[Config for nvim-treesitter]], false)
--- Config for: nvcode-color-schemes.vim
-time([[Config for nvcode-color-schemes.vim]], true)
-require('plugins.colors')
-time([[Config for nvcode-color-schemes.vim]], false)
--- Config for: lexima.vim
-time([[Config for lexima.vim]], true)
-vim.cmd('autocmd FileType clojure let b:lexima_disabled=1')
-time([[Config for lexima.vim]], false)
--- Config for: vista.vim
-time([[Config for vista.vim]], true)
-      vim.g.vista_default_executive = 'nvim_lsp'
-      vim.g.vista_icon_indent = {'╰─▸ ', '├─▸ '}
-      vim.g.vista_fzf_preview = {'right:50%'}
-    
-time([[Config for vista.vim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('plugins.cmp-new')
-time([[Config for nvim-cmp]], false)
 -- Config for: vim-test
 time([[Config for vim-test]], true)
 require('plugins.vim-test')

@@ -24,8 +24,6 @@ return require('packer').startup(function(use, use_rocks)
     config = [[require('plugins.lspconfig')]],
     requires = {
       'williamboman/nvim-lsp-installer',
-      -- TODO: using forked lspsaga until neovim 0.6.0+ is supported
-      -- 'glepnir/lspsaga.nvim'
       'tami5/lspsaga.nvim',
       'nanotee/sqls.nvim'
     }
@@ -54,17 +52,15 @@ return require('packer').startup(function(use, use_rocks)
     run = ':TSUpdate'
   }
   use {
-    -- 'edeneast/nightfox.nvim',
     'ChristianChiarulli/nvcode-color-schemes.vim',
     config = [[require('plugins.colors')]]
   }
-  use 'godlygeek/tabular'
+  use 'godlygeek/tabular' -- LEARN: shortcuts
   use {
     'cohama/lexima.vim',
-    config = [[vim.cmd('autocmd FileType clojure let b:lexima_disabled=1')]],
-    setup = [[require('plugins.lexima')]]
+    config = [[vim.cmd('autocmd FileType TelescopePrompt let b:lexima_disabled=1')]]
   }
-  use 'machakann/vim-sandwich'
+  use 'machakann/vim-sandwich' -- LEARN: shortcuts, compare with vim-surround
   use {
     'hoob3rt/lualine.nvim',
     config = [[require('plugins.lualine')]],
@@ -75,8 +71,8 @@ return require('packer').startup(function(use, use_rocks)
     config = [[require('plugins.luatab')]],
     requires = 'kyazdani42/nvim-web-devicons'
   }
-  use 'tpope/vim-surround'
-  use 'tpope/vim-fugitive'
+  use 'tpope/vim-surround' -- LEARN: shortcuts, compare with vim-sandwich
+  use 'tpope/vim-fugitive' -- LEARN: compare with gitsigns/neogit
   use 'tpope/vim-abolish'
   use 'tpope/vim-eunuch'
   use 'tpope/vim-repeat'
@@ -98,10 +94,9 @@ return require('packer').startup(function(use, use_rocks)
   }
   use 'kristijanhusak/vim-dadbod-completion'
   use 'tpope/vim-rails'
-  use 'mhinz/vim-signify'
-  use 'kshenoy/vim-signature'
-  use 'junegunn/vim-peekaboo'
-  use 'junegunn/gv.vim'
+  use 'kshenoy/vim-signature' -- LEARN: marks
+  use 'junegunn/vim-peekaboo' -- LEARN: registers
+  use 'junegunn/gv.vim' -- LEARN: shortcuts
   use {
     'vim-test/vim-test',
     config = [[require('plugins.vim-test')]]
@@ -110,9 +105,9 @@ return require('packer').startup(function(use, use_rocks)
     'b3nj5m1n/kommentary',
     config = [[require('plugins.kommentary')]]
   }
-  use "npxbr/glow.nvim"
+  use "npxbr/glow.nvim" -- LEARN: useful?
   use {
-    'lewis6991/gitsigns.nvim',
+    'lewis6991/gitsigns.nvim', -- LEARN: compare with vim-fugitive/neogit
     config = [[require('plugins.gitsigns')]],
     requires = {
       'nvim-lua/plenary.nvim'
@@ -120,17 +115,8 @@ return require('packer').startup(function(use, use_rocks)
   }
   use 'christoomey/vim-tmux-navigator'
   use {
-    'APZelos/blamer.nvim',
-    config = [[require('plugins.blamer')]]
-  }
-  use {
-    -- TODO: Refine this if color codes get annoying
     'norcalli/nvim-colorizer.lua',
     config = [[require('colorizer').setup()]]
-  }
-  use {
-    'vimwiki/vimwiki',
-    config = [[require('plugins.vimwiki')]]
   }
   use {
     'liuchengxu/vista.vim',
