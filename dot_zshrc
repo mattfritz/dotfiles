@@ -51,9 +51,14 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 # Starship
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
 
+# Zoxide
+[ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh --cmd cd)"
+
+# Secrets export
 [ -f ~/.secret ] && source ~/.secret
 
 alias nvimdb=nvim --cmd 'lua vim.lsp.set_log_level("debug")'
+alias cz=chezmoi
 alias av=aws-vault
 alias dc=docker-compose
 alias dev='$HOME/code/homebot/dev/bin/dev'
