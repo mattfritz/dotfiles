@@ -60,7 +60,6 @@ return require('packer').startup(function(use, use_rocks)
     'cohama/lexima.vim',
     config = [[vim.cmd('autocmd FileType TelescopePrompt let b:lexima_disabled=1')]]
   }
-  use 'machakann/vim-sandwich' -- LEARN: shortcuts, compare with vim-surround
   use {
     'hoob3rt/lualine.nvim',
     config = [[require('plugins.lualine')]],
@@ -71,13 +70,17 @@ return require('packer').startup(function(use, use_rocks)
     config = [[require('plugins.luatab')]],
     requires = 'kyazdani42/nvim-web-devicons'
   }
-  use 'tpope/vim-surround' -- LEARN: shortcuts, compare with vim-sandwich
+  use 'machakann/vim-sandwich' -- LEARN: shortcuts
   use 'tpope/vim-fugitive' -- LEARN: compare with gitsigns/neogit
+  use 'tpope/vim-unimpaired' -- LEARN: shortcuts
+  use {
+    'tpope/vim-projectionist',
+    setup = [[require('plugins.projectionist')]]
+  } -- LEARN: mappings
   use 'tpope/vim-abolish'
   use 'tpope/vim-eunuch'
   use 'tpope/vim-repeat'
   use 'tpope/vim-rhubarb'
-  use 'tommcdo/vim-fubitive'
   use 'vim-ruby/vim-ruby'
   use {
     'tpope/vim-dispatch',

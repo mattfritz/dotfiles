@@ -294,11 +294,6 @@ _G.packer_plugins = {
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vim-eunuch",
     url = "https://github.com/tpope/vim-eunuch"
   },
-  ["vim-fubitive"] = {
-    loaded = true,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vim-fubitive",
-    url = "https://github.com/tommcdo/vim-fubitive"
-  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vim-fugitive",
@@ -308,6 +303,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vim-peekaboo",
     url = "https://github.com/junegunn/vim-peekaboo"
+  },
+  ["vim-projectionist"] = {
+    loaded = true,
+    needs_bufread = false,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/opt/vim-projectionist",
+    url = "https://github.com/tpope/vim-projectionist"
   },
   ["vim-rails"] = {
     loaded = true,
@@ -339,11 +340,6 @@ _G.packer_plugins = {
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vim-signature",
     url = "https://github.com/kshenoy/vim-signature"
   },
-  ["vim-surround"] = {
-    loaded = true,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vim-surround",
-    url = "https://github.com/tpope/vim-surround"
-  },
   ["vim-test"] = {
     config = { "require('plugins.vim-test')" },
     loaded = true,
@@ -355,6 +351,11 @@ _G.packer_plugins = {
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
     url = "https://github.com/christoomey/vim-tmux-navigator"
   },
+  ["vim-unimpaired"] = {
+    loaded = true,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vim-unimpaired",
+    url = "https://github.com/tpope/vim-unimpaired"
+  },
   ["vista.vim"] = {
     config = { "      vim.g.vista_default_executive = 'nvim_lsp'\n      vim.g.vista_icon_indent = {'╰─▸ ', '├─▸ '}\n      vim.g.vista_fzf_preview = {'right:50%'}\n    " },
     loaded = true,
@@ -364,6 +365,13 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Setup for: vim-dispatch
+time([[Setup for vim-dispatch]], true)
+require('plugins.dispatch')
+time([[Setup for vim-dispatch]], false)
+time([[packadd for vim-dispatch]], true)
+vim.cmd [[packadd vim-dispatch]]
+time([[packadd for vim-dispatch]], false)
 -- Setup for: vim-dadbod-ui
 time([[Setup for vim-dadbod-ui]], true)
       vim.g.db_ui_win_position = 'right'
@@ -374,13 +382,40 @@ time([[Setup for vim-dadbod-ui]], false)
 time([[packadd for vim-dadbod-ui]], true)
 vim.cmd [[packadd vim-dadbod-ui]]
 time([[packadd for vim-dadbod-ui]], false)
--- Setup for: vim-dispatch
-time([[Setup for vim-dispatch]], true)
-require('plugins.dispatch')
-time([[Setup for vim-dispatch]], false)
-time([[packadd for vim-dispatch]], true)
-vim.cmd [[packadd vim-dispatch]]
-time([[packadd for vim-dispatch]], false)
+-- Setup for: vim-projectionist
+time([[Setup for vim-projectionist]], true)
+require('plugins.projectionist')
+time([[Setup for vim-projectionist]], false)
+time([[packadd for vim-projectionist]], true)
+vim.cmd [[packadd vim-projectionist]]
+time([[packadd for vim-projectionist]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('plugins.cmp-new')
+time([[Config for nvim-cmp]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require('plugins.gitsigns')
+time([[Config for gitsigns.nvim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require('colorizer').setup()
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: vista.vim
+time([[Config for vista.vim]], true)
+      vim.g.vista_default_executive = 'nvim_lsp'
+      vim.g.vista_icon_indent = {'╰─▸ ', '├─▸ '}
+      vim.g.vista_fzf_preview = {'right:50%'}
+    
+time([[Config for vista.vim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('plugins.lualine')
+time([[Config for lualine.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('plugins.treesitter')
+time([[Config for nvim-treesitter]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 require('plugins.telescope')
@@ -393,10 +428,10 @@ time([[Config for luatab.nvim]], false)
 time([[Config for kommentary]], true)
 require('plugins.kommentary')
 time([[Config for kommentary]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('plugins.treesitter')
-time([[Config for nvim-treesitter]], false)
+-- Config for: vim-test
+time([[Config for vim-test]], true)
+require('plugins.vim-test')
+time([[Config for vim-test]], false)
 -- Config for: nvcode-color-schemes.vim
 time([[Config for nvcode-color-schemes.vim]], true)
 require('plugins.colors')
@@ -405,37 +440,10 @@ time([[Config for nvcode-color-schemes.vim]], false)
 time([[Config for lexima.vim]], true)
 vim.cmd('autocmd FileType TelescopePrompt let b:lexima_disabled=1')
 time([[Config for lexima.vim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('plugins.cmp-new')
-time([[Config for nvim-cmp]], false)
--- Config for: vista.vim
-time([[Config for vista.vim]], true)
-      vim.g.vista_default_executive = 'nvim_lsp'
-      vim.g.vista_icon_indent = {'╰─▸ ', '├─▸ '}
-      vim.g.vista_fzf_preview = {'right:50%'}
-    
-time([[Config for vista.vim]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-require('colorizer').setup()
-time([[Config for nvim-colorizer.lua]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require('plugins.gitsigns')
-time([[Config for gitsigns.nvim]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 require('plugins.lspconfig')
 time([[Config for nvim-lspconfig]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require('plugins.lualine')
-time([[Config for lualine.nvim]], false)
--- Config for: vim-test
-time([[Config for vim-test]], true)
-require('plugins.vim-test')
-time([[Config for vim-test]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
