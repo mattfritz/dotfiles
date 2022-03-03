@@ -43,6 +43,8 @@ if [ -f $ZPLUG_HOME/init.zsh ]; then
   bindkey -M vicmd 'j' history-substring-search-down
 fi
 
+# ASDF environment
+. /usr/local/opt/asdf/asdf.sh
 
 # FZF
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
