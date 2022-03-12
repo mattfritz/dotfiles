@@ -1,6 +1,26 @@
 local cmp = require('cmp')
 local compare = cmp.config.compare
+local luasnip = require('luasnip')
 local lspkind = require('lspkind')
+
+local has_words_before = function ()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)
+end
+
+-- Highlight pop-up menu
+-- TODO: add class, module, snippet, field and other highlight types
+vim.highlight.create('CmpItemAbbrDeprecated', {guibg='NONE', guifg='#808080'})
+vim.highlight.create('CmpItemAbbrMatch', {guibg='NONE', guifg='#569CD6'})
+vim.highlight.create('CmpItemAbbrMatchFuzzy', {guibg='NONE', guifg='#569CD6'})
+vim.highlight.create('CmpItemKindVariable', {guibg='NONE', guifg='#9CDCFE'})
+vim.highlight.create('CmpItemKindInterface', {guibg='NONE', guifg='#9CDCFE'})
+vim.highlight.create('CmpItemKindText', {guibg='NONE', guifg='#9CDCFE'})
+vim.highlight.create('CmpItemKindFunction', {guibg='NONE', guifg='#C586C0'})
+vim.highlight.create('CmpItemKindMethod', {guibg='NONE', guifg='#C586C0'})
+vim.highlight.create('CmpItemKindKeyword', {guibg='NONE', guifg='#D4D4D4'})
+vim.highlight.create('CmpItemKindProperty', {guibg='NONE', guifg='#D4D4D4'})
+vim.highlight.create('CmpItemKindUnit', {guibg='NONE', guifg='#D4D4D4'})
 
 cmp.setup({
   formatting = {
@@ -9,37 +29,43 @@ cmp.setup({
     })
   },
   mapping = {
-    ['<Tab>'] = function(fallback)
+    ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif has_words_before() then
+        cmp.complete()
       else
         fallback()
       end
-    end,
-    ['<S-Tab>'] = function(fallback)
+    end, { 'i', 's' }),
+
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end
-    end,
+    end, { 'i', 's' }),
+
     ['<C-d>'] = cmp.mapping(
       cmp.mapping.scroll_docs(-4),
       { 'i', 'c' }
     ),
+
     ['<C-f>'] = cmp.mapping(
       cmp.mapping.scroll_docs(4),
       { 'i', 'c' }
     ),
-    -- ['<C-Space>'] = cmp.mapping(
-    --   cmp.mapping.complete(),
-    --   { 'i', 'c' }
-    -- ),
-    -- ['<C-y>'] = cmp.config.disable,
+
     ['<C-e>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
+
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
   snippet = {

@@ -33,7 +33,6 @@ return require('packer').startup(function(use, use_rocks)
     config = [[require('plugins.cmp-new')]],
     requires = {
       'rafamadriz/friendly-snippets',
-      'L3MON4D3/LuaSnip',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
@@ -42,6 +41,7 @@ return require('packer').startup(function(use, use_rocks)
       'hrsh7th/cmp-nvim-lsp-signature-help',
       'onsails/lspkind-nvim',
       'saadparwaiz1/cmp_luasnip',
+      'L3MON4D3/LuaSnip',
       'ray-x/cmp-treesitter',
       'lukas-reineke/cmp-under-comparator',
     }
