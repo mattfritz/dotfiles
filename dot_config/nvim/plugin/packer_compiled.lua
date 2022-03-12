@@ -365,6 +365,13 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Setup for: vim-projectionist
+time([[Setup for vim-projectionist]], true)
+require('plugins.projectionist')
+time([[Setup for vim-projectionist]], false)
+time([[packadd for vim-projectionist]], true)
+vim.cmd [[packadd vim-projectionist]]
+time([[packadd for vim-projectionist]], false)
 -- Setup for: vim-dispatch
 time([[Setup for vim-dispatch]], true)
 require('plugins.dispatch')
@@ -382,33 +389,14 @@ time([[Setup for vim-dadbod-ui]], false)
 time([[packadd for vim-dadbod-ui]], true)
 vim.cmd [[packadd vim-dadbod-ui]]
 time([[packadd for vim-dadbod-ui]], false)
--- Setup for: vim-projectionist
-time([[Setup for vim-projectionist]], true)
-require('plugins.projectionist')
-time([[Setup for vim-projectionist]], false)
-time([[packadd for vim-projectionist]], true)
-vim.cmd [[packadd vim-projectionist]]
-time([[packadd for vim-projectionist]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('plugins.treesitter')
-time([[Config for nvim-treesitter]], false)
--- Config for: nvcode-color-schemes.vim
-time([[Config for nvcode-color-schemes.vim]], true)
-require('plugins.colors')
-time([[Config for nvcode-color-schemes.vim]], false)
--- Config for: kommentary
-time([[Config for kommentary]], true)
-require('plugins.kommentary')
-time([[Config for kommentary]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('plugins.cmp-new')
-time([[Config for nvim-cmp]], false)
--- Config for: lexima.vim
-time([[Config for lexima.vim]], true)
-vim.cmd('autocmd FileType TelescopePrompt let b:lexima_disabled=1')
-time([[Config for lexima.vim]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require('plugins.gitsigns')
+time([[Config for gitsigns.nvim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require('colorizer').setup()
+time([[Config for nvim-colorizer.lua]], false)
 -- Config for: vista.vim
 time([[Config for vista.vim]], true)
       vim.g.vista_default_executive = 'nvim_lsp'
@@ -416,22 +404,10 @@ time([[Config for vista.vim]], true)
       vim.g.vista_fzf_preview = {'right:50%'}
     
 time([[Config for vista.vim]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-require('colorizer').setup()
-time([[Config for nvim-colorizer.lua]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require('plugins.gitsigns')
-time([[Config for gitsigns.nvim]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 require('plugins.lualine')
 time([[Config for lualine.nvim]], false)
--- Config for: vim-test
-time([[Config for vim-test]], true)
-require('plugins.vim-test')
-time([[Config for vim-test]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 require('plugins.telescope')
@@ -440,6 +416,30 @@ time([[Config for telescope.nvim]], false)
 time([[Config for luatab.nvim]], true)
 require('plugins.luatab')
 time([[Config for luatab.nvim]], false)
+-- Config for: kommentary
+time([[Config for kommentary]], true)
+require('plugins.kommentary')
+time([[Config for kommentary]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('plugins.treesitter')
+time([[Config for nvim-treesitter]], false)
+-- Config for: nvcode-color-schemes.vim
+time([[Config for nvcode-color-schemes.vim]], true)
+require('plugins.colors')
+time([[Config for nvcode-color-schemes.vim]], false)
+-- Config for: lexima.vim
+time([[Config for lexima.vim]], true)
+vim.cmd('autocmd FileType TelescopePrompt let b:lexima_disabled=1')
+time([[Config for lexima.vim]], false)
+-- Config for: vim-test
+time([[Config for vim-test]], true)
+require('plugins.vim-test')
+time([[Config for vim-test]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('plugins.cmp-new')
+time([[Config for nvim-cmp]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 require('plugins.lspconfig')
