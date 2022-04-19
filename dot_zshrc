@@ -44,9 +44,12 @@ if [ -f $ZPLUG_HOME/init.zsh ]; then
 fi
 
 # ASDF environment
-. /usr/local/opt/asdf/asdf.sh
+export ASDF_DIR="$(brew --prefix asdf)/libexec"
+source $ASDF_DIR/asdf.sh
 
 # FZF
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -60,10 +63,16 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 [ -f ~/.secret ] && source ~/.secret
 
 alias nvimdb=nvim --cmd 'lua vim.lsp.set_log_level("debug")'
-alias cz=chezmoi
-alias av=aws-vault
-alias dc=docker-compose
+alias cz='chezmoi'
+alias av='aws-vault'
+alias dc='docker-compose'
 alias dev='$HOME/code/homebot/dev/bin/dev'
 alias hdev="docker-compose -f $HOME/code/homebot/hbdev/docker/services.yml -p hbdev"
 alias hbdev="$HOME/code/homebot/hbdev/bin/hbdev"
 alias tools="docker-compose -f $HOME/code/homebot/hbdev/docker/tools.yml -p hbdev"
+
+alias tn='tmux new-session -s'
+alias ta='tmux attach-session -t'
+alias tl='tmux list-sessions'
+
+alias v='nvim'

@@ -21,22 +21,39 @@ set_keymap('v', 'p', 'pgvy')
 -- Config shortcuts
 set_keymap('n', '<Leader>cc', [[<Cmd>luafile %<CR> | <Cmd>echo "Sourced file"<CR>]])
 
--- Telescope
-set_keymap('n', '<Leader>ff', [[<Cmd>Telescope find_files<CR>]])
-set_keymap('n', '<Leader>fd', [[<Cmd>Telescope file_browser<CR>]])
-set_keymap('n', '<Leader>fs', [[<Cmd>Telescope grep_string<CR>]])
+-- ############## FZF ###############
+set_keymap('n', '<Leader>ff', [[<Cmd>lua require('fzf-lua').files()<CR>]])
+set_keymap('n', '<Leader>fo', [[<Cmd>lua require('fzf-lua').oldfiles()<CR>]])
+set_keymap('n', '<Leader>fb', [[<Cmd>lua require('fzf-lua').buffers()<CR>]])
+set_keymap('n', '<Leader>fs', [[<Cmd>lua require('fzf-lua').grep_cword()<CR>]])
+set_keymap('n', '<Leader>fg', [[<Cmd>lua require('fzf-lua').live_grep()<CR>]])
+set_keymap('n', '<Leader>ft', [[<Cmd>lua require('fzf-lua').tabs()<CR>]])
 
--- TODO: Workaround until Telescope implements fuzzy live_grep: https://github.com/nvim-telescope/telescope.nvim/issues/564
--- set_keymap('n', '<Leader>fg', [[<Cmd>Telescope live_grep<CR>]])
-set_keymap('n', '<Leader>fg', [[:lua vim.ui.input({prompt = 'Enter search term: '}, function(input) require('telescope.builtin').grep_string({search = input}) end)<CR>]])
--- ENDTODO
+set_keymap('n', '<Leader>fd', [[<Cmd>lua require('fzf-lua').lsp_definitions()<CR>]])
+set_keymap('n', '<Leader>fr', [[<Cmd>lua require('fzf-lua').lsp_references()<CR>]])
+set_keymap('n', '<Leader>fa', [[<Cmd>lua require('fzf-lua').lsp_code_actions()<CR>]])
+set_keymap('n', '<Leader>f:', [[<Cmd>lua require('fzf-lua').lsp_document_symbols()<CR>]])
 
-set_keymap('n', '<Leader>fb', [[<Cmd>Telescope buffers<CR>]])
-set_keymap('n', '<Leader>fh', [[<Cmd>Telescope help_tags<CR>]])
-set_keymap('n', '<Leader>fo', [[<Cmd>Telescope oldfiles<CR>]])
-set_keymap('n', '<Leader>fv', [[<Cmd>Telescope treesitter<CR>]])
-set_keymap('n', '<Leader>fp', [[:lua require'telescope'.extensions.project.project{}<CR>]])
-set_keymap('n', '<Leader>fgb', [[<Cmd>Telescope git_branches<CR>]])
+set_keymap('n', '<Leader>fh', [[<Cmd>lua require('fzf-lua').help_tags()<CR>]])
+set_keymap('n', '<Leader>fgb', [[<Cmd>lua require('fzf-lua').git_branches()<CR>]])
+
+-- ############## LspSaga
+
+set_keymap('n', 'gh', [[<Cmd>lua require'lspsaga.provider'.lsp_finder()<CR>]])
+set_keymap('n', 'gr', [[<Cmd>lua require('lspsaga.rename').rename()<CR>]])
+set_keymap('n', 'gx', [[<Cmd>lua require('lspsaga.codeaction').code_action()<CR>]])
+set_keymap('x', 'gx', [[:<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>]])
+
+-- scrollable)
+set_keymap('n', 'K', [[<Cmd>lua require('lspsaga.hover').render_hover_doc()<CR>]])
+set_keymap('n', 'gs', [[<Cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>]])
+set_keymap('n', 'gd', [[<Cmd>lua require('lspsaga.provider').preview_definition()<CR>]])
+set_keymap('n', '<C-u>', [[<Cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1, '<c-u>')<CR>]])
+set_keymap('n', '<C-d>', [[<Cmd>lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<CR>]])
+
+set_keymap('n', 'go', [[<Cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>]])
+set_keymap('n', 'gj', [[<Cmd>Lspsaga diagnostic_jump_next<CR>]])
+set_keymap('n', 'gk', [[<Cmd>Lspsaga diagnostic_jump_prev<CR>]])
 
 -- Neogit (reevaluate)
 -- set_keymap('n', '<Leader>gg', [[<Cmd>Neogit<CR>]])
@@ -46,11 +63,6 @@ set_keymap('n', '<C-h>', [[<C-w>h]])
 set_keymap('n', '<C-j>', [[<C-w>j]])
 set_keymap('n', '<C-k>', [[<C-w>k]])
 set_keymap('n', '<C-l>', [[<C-w>l]])
-
--- Toggles
-set_keymap('n', '<Leader>sh', [[<Cmd>nohl<CR>]])
-set_keymap('n', '<Leader>sn', [[<Cmd>set number!<CR>]])
-set_keymap('n', '<Leader>sr', [[<Cmd>set relativenumber!<CR>]])
 
 -- Git
 set_keymap('n', '<Leader>gl', [[<Cmd>GV<CR>]])

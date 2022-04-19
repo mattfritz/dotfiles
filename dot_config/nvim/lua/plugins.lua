@@ -9,28 +9,31 @@ return require('packer').startup(function(use, use_rocks)
     event = 'VimEnter'
   }
   use {
-    'nvim-telescope/telescope.nvim',
-    config = [[require('plugins.telescope')]],
-    requires = {
-      {'nvim-lua/popup.nvim'},
-      {'nvim-lua/plenary.nvim'},
-      {'nvim-telescope/telescope-file-browser.nvim'},
-      {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'},
-      {'nvim-telescope/telescope-project.nvim'},
-    }
+    'folke/trouble.nvim',
+    config = [[require('trouble').setup()]],
+    requires = 'kyazdani42/nvim-web-devicons'
+  }
+  use { -- TODO: add additional functionality: https://github.com/ibhagwan/nvim-lua/tree/main/lua/plugins/fzf-lua
+    'ibhagwan/fzf-lua',
+    config = [[require('plugins.fzf-lua')]],
+    requires = 'kyazdani42/nvim-web-devicons'
   }
   use {
     'neovim/nvim-lspconfig',
     config = [[require('plugins.lspconfig')]],
     requires = {
-      'williamboman/nvim-lsp-installer',
-      'tami5/lspsaga.nvim',
+      'williamboman/nvim-lsp-installer', -- TODO: replace this with more manual functionality
+      {
+        'tami5/lspsaga.nvim',
+        -- branch = 'nvim6.0',
+        config = [[require('plugins.lspsaga')]]
+      },
       'nanotee/sqls.nvim'
     }
   }
   use {
     'hrsh7th/nvim-cmp',
-    config = [[require('plugins.cmp-new')]],
+    config = [[require('plugins.cmp')]],
     requires = {
       'rafamadriz/friendly-snippets',
       'L3MON4D3/LuaSnip',
@@ -81,7 +84,13 @@ return require('packer').startup(function(use, use_rocks)
   use 'tpope/vim-eunuch'
   use 'tpope/vim-repeat'
   use 'tpope/vim-rhubarb'
+  use 'tpope/vim-sleuth'
+  use 'nathom/filetype.nvim'
   use 'vim-ruby/vim-ruby'
+  use {
+    'ray-x/go.nvim',
+    config = [[require('plugins.go')]]
+  }
   use {
     'tpope/vim-dispatch',
     setup = [[require('plugins.dispatch')]]

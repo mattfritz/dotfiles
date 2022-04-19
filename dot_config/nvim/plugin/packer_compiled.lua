@@ -119,10 +119,21 @@ _G.packer_plugins = {
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["filetype.nvim"] = {
+    loaded = true,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/filetype.nvim",
+    url = "https://github.com/nathom/filetype.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
+  },
+  ["fzf-lua"] = {
+    config = { "require('plugins.fzf-lua')" },
+    loaded = true,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/fzf-lua",
+    url = "https://github.com/ibhagwan/fzf-lua"
   },
   ["gitsigns.nvim"] = {
     config = { "require('plugins.gitsigns')" },
@@ -134,6 +145,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/glow.nvim",
     url = "https://github.com/npxbr/glow.nvim"
+  },
+  ["go.nvim"] = {
+    config = { "require('plugins.go')" },
+    loaded = true,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/go.nvim",
+    url = "https://github.com/ray-x/go.nvim"
   },
   ["gv.vim"] = {
     loaded = true,
@@ -158,6 +175,7 @@ _G.packer_plugins = {
     url = "https://github.com/onsails/lspkind-nvim"
   },
   ["lspsaga.nvim"] = {
+    config = { "require('plugins.lspsaga')" },
     loaded = true,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
     url = "https://github.com/tami5/lspsaga.nvim"
@@ -181,7 +199,7 @@ _G.packer_plugins = {
     url = "https://github.com/ChristianChiarulli/nvcode-color-schemes.vim"
   },
   ["nvim-cmp"] = {
-    config = { "require('plugins.cmp-new')" },
+    config = { "require('plugins.cmp')" },
     loaded = true,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
@@ -226,11 +244,6 @@ _G.packer_plugins = {
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["popup.nvim"] = {
-    loaded = true,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/popup.nvim",
-    url = "https://github.com/nvim-lua/popup.nvim"
-  },
   ["sqls.nvim"] = {
     loaded = true,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/sqls.nvim",
@@ -241,26 +254,11 @@ _G.packer_plugins = {
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/tabular",
     url = "https://github.com/godlygeek/tabular"
   },
-  ["telescope-file-browser.nvim"] = {
+  ["trouble.nvim"] = {
+    config = { "require('trouble').setup()" },
     loaded = true,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
-    url = "https://github.com/nvim-telescope/telescope-file-browser.nvim"
-  },
-  ["telescope-fzf-native.nvim"] = {
-    loaded = true,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
-    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
-  },
-  ["telescope-project.nvim"] = {
-    loaded = true,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/telescope-project.nvim",
-    url = "https://github.com/nvim-telescope/telescope-project.nvim"
-  },
-  ["telescope.nvim"] = {
-    config = { "require('plugins.telescope')" },
-    loaded = true,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/telescope.nvim",
-    url = "https://github.com/nvim-telescope/telescope.nvim"
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/trouble.nvim",
+    url = "https://github.com/folke/trouble.nvim"
   },
   ["vim-abolish"] = {
     loaded = true,
@@ -340,6 +338,11 @@ _G.packer_plugins = {
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vim-signature",
     url = "https://github.com/kshenoy/vim-signature"
   },
+  ["vim-sleuth"] = {
+    loaded = true,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vim-sleuth",
+    url = "https://github.com/tpope/vim-sleuth"
+  },
   ["vim-test"] = {
     config = { "require('plugins.vim-test')" },
     loaded = true,
@@ -389,29 +392,6 @@ time([[Setup for vim-dadbod-ui]], false)
 time([[packadd for vim-dadbod-ui]], true)
 vim.cmd [[packadd vim-dadbod-ui]]
 time([[packadd for vim-dadbod-ui]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require('plugins.gitsigns')
-time([[Config for gitsigns.nvim]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-require('colorizer').setup()
-time([[Config for nvim-colorizer.lua]], false)
--- Config for: vista.vim
-time([[Config for vista.vim]], true)
-      vim.g.vista_default_executive = 'nvim_lsp'
-      vim.g.vista_icon_indent = {'╰─▸ ', '├─▸ '}
-      vim.g.vista_fzf_preview = {'right:50%'}
-    
-time([[Config for vista.vim]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require('plugins.lualine')
-time([[Config for lualine.nvim]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require('plugins.telescope')
-time([[Config for telescope.nvim]], false)
 -- Config for: luatab.nvim
 time([[Config for luatab.nvim]], true)
 require('plugins.luatab')
@@ -432,14 +412,49 @@ time([[Config for nvcode-color-schemes.vim]], false)
 time([[Config for lexima.vim]], true)
 vim.cmd('autocmd FileType TelescopePrompt let b:lexima_disabled=1')
 time([[Config for lexima.vim]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require('plugins.gitsigns')
+time([[Config for gitsigns.nvim]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('plugins.cmp')
+time([[Config for nvim-cmp]], false)
+-- Config for: fzf-lua
+time([[Config for fzf-lua]], true)
+require('plugins.fzf-lua')
+time([[Config for fzf-lua]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+require('trouble').setup()
+time([[Config for trouble.nvim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require('colorizer').setup()
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: lspsaga.nvim
+time([[Config for lspsaga.nvim]], true)
+require('plugins.lspsaga')
+time([[Config for lspsaga.nvim]], false)
+-- Config for: go.nvim
+time([[Config for go.nvim]], true)
+require('plugins.go')
+time([[Config for go.nvim]], false)
+-- Config for: vista.vim
+time([[Config for vista.vim]], true)
+      vim.g.vista_default_executive = 'nvim_lsp'
+      vim.g.vista_icon_indent = {'╰─▸ ', '├─▸ '}
+      vim.g.vista_fzf_preview = {'right:50%'}
+    
+time([[Config for vista.vim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('plugins.lualine')
+time([[Config for lualine.nvim]], false)
 -- Config for: vim-test
 time([[Config for vim-test]], true)
 require('plugins.vim-test')
 time([[Config for vim-test]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('plugins.cmp-new')
-time([[Config for nvim-cmp]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 require('plugins.lspconfig')

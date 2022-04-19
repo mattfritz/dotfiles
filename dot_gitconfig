@@ -1,3 +1,8 @@
+[apply]
+  whitespace = nowarn
+[branch]
+  autosetupmerge = always
+  autosetuprebase = always
 [color]
   ui = true
 [color "branch"]
@@ -9,30 +14,36 @@
   frag = magenta bold
   old = red
   new = green
-[format]
-  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
-[apply]
-  whitespace = nowarn
-[push]
-  default = simple
 [core]
   autocrlf = false
   editor = nvim
   excludesfile = ~/.gitignore
+  pager = delta
+[delta]
+  navigate = true
+  side-by-side = true
 [diff]
-  tool = vimdiff
-  mnemonicprefix = true
   algorithm = patience
+  colorMoved = default
+  mnemonicprefix = true
+  tool = vimdiff
+[fetch]
+  prune = true
+[format]
+  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+[init]
+  defaultBranch = master
+[interactive]
+  diffFilter = delta --color-only
+[merge]
+  conflictstyle = diff3
+[push]
+  default = simple
 [rerere]
   enabled = true
 [user]
   name = Matt Fritz
   email = mfritzer@gmail.com
-[fetch]
-  prune = true
-[branch]
-  autosetupmerge = always
-  autosetuprebase = always
 
 # TODO: reconfigure new setup to enable 3-way diff
 # [mergetool "vimdiff"]
@@ -47,5 +58,3 @@
 #   tool = vimdiff
 #   mnemonicprefix = true
 #   algorithm = patience
-[init]
-	defaultBranch = master

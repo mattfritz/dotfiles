@@ -9,6 +9,7 @@ local options     = {
   expandtab     = true,
   hidden        = true,
   ignorecase    = true,
+  magic         = true, -- Use magic regex helpers
   mouse         = 'a',
   number        = true,
   numberwidth   = 2,
@@ -66,3 +67,7 @@ local disabled_built_ins = {
 for _, builtin in pairs(disabled_built_ins) do
   vim.g['loaded_' .. builtin] = 1
 end
+
+-- Disable comment insertion on CR and `o` newline
+-- TODO: change this to use nvim_create_autocmd after 0.7.0 upgrade
+vim.cmd[[autocmd FileType * setlocal formatoptions-=ro]]
