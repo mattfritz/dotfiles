@@ -146,12 +146,6 @@ _G.packer_plugins = {
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/glow.nvim",
     url = "https://github.com/npxbr/glow.nvim"
   },
-  ["go.nvim"] = {
-    config = { "require('plugins.go')" },
-    loaded = true,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/go.nvim",
-    url = "https://github.com/ray-x/go.nvim"
-  },
   ["gv.vim"] = {
     loaded = true,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/gv.vim",
@@ -210,11 +204,6 @@ _G.packer_plugins = {
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
-  ["nvim-lsp-installer"] = {
-    loaded = true,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
-    url = "https://github.com/williamboman/nvim-lsp-installer"
-  },
   ["nvim-lspconfig"] = {
     config = { "require('plugins.lspconfig')" },
     loaded = true,
@@ -222,10 +211,17 @@ _G.packer_plugins = {
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
-    config = { "require('plugins.treesitter')" },
+    after = { "nvim-treesitter-endwise", "vim-matchup" },
     loaded = true,
-    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
-    url = "https://github.com/nvim-treesitter/nvim-treesitter"
+    only_config = true
+  },
+  ["nvim-treesitter-endwise"] = {
+    config = { "require('plugins.nvim-treesitter-endwise')" },
+    load_after = {},
+    loaded = true,
+    needs_bufread = false,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-endwise",
+    url = "https://github.com/RRethy/nvim-treesitter-endwise"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -296,6 +292,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-matchup"] = {
+    after_files = { "/Users/matt.fritz/.local/share/nvim/site/pack/packer/opt/vim-matchup/after/plugin/matchit.vim" },
+    load_after = {},
+    loaded = true,
+    needs_bufread = true,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/opt/vim-matchup",
+    url = "https://github.com/andymass/vim-matchup"
   },
   ["vim-peekaboo"] = {
     loaded = true,
@@ -368,6 +372,17 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Setup for: vim-dadbod-ui
+time([[Setup for vim-dadbod-ui]], true)
+      vim.g.db_ui_win_position = 'right'
+      vim.g.db_ui_winwidth = 60
+      vim.g.db_ui_show_database_icon = 1
+      vim.g.db_ui_use_nerd_fonts = 1
+    
+time([[Setup for vim-dadbod-ui]], false)
+time([[packadd for vim-dadbod-ui]], true)
+vim.cmd [[packadd vim-dadbod-ui]]
+time([[packadd for vim-dadbod-ui]], false)
 -- Setup for: vim-projectionist
 time([[Setup for vim-projectionist]], true)
 require('plugins.projectionist')
@@ -382,71 +397,10 @@ time([[Setup for vim-dispatch]], false)
 time([[packadd for vim-dispatch]], true)
 vim.cmd [[packadd vim-dispatch]]
 time([[packadd for vim-dispatch]], false)
--- Setup for: vim-dadbod-ui
-time([[Setup for vim-dadbod-ui]], true)
-      vim.g.db_ui_win_position = 'right'
-      vim.g.db_ui_show_database_icon = 1
-      vim.g.db_ui_use_nerd_fonts = 1
-    
-time([[Setup for vim-dadbod-ui]], false)
-time([[packadd for vim-dadbod-ui]], true)
-vim.cmd [[packadd vim-dadbod-ui]]
-time([[packadd for vim-dadbod-ui]], false)
--- Config for: luatab.nvim
-time([[Config for luatab.nvim]], true)
-require('plugins.luatab')
-time([[Config for luatab.nvim]], false)
--- Config for: kommentary
-time([[Config for kommentary]], true)
-require('plugins.kommentary')
-time([[Config for kommentary]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('plugins.treesitter')
-time([[Config for nvim-treesitter]], false)
--- Config for: nvcode-color-schemes.vim
-time([[Config for nvcode-color-schemes.vim]], true)
-require('plugins.colors')
-time([[Config for nvcode-color-schemes.vim]], false)
--- Config for: lexima.vim
-time([[Config for lexima.vim]], true)
-vim.cmd('autocmd FileType TelescopePrompt let b:lexima_disabled=1')
-time([[Config for lexima.vim]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require('plugins.gitsigns')
-time([[Config for gitsigns.nvim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('plugins.cmp')
-time([[Config for nvim-cmp]], false)
--- Config for: fzf-lua
-time([[Config for fzf-lua]], true)
-require('plugins.fzf-lua')
-time([[Config for fzf-lua]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-require('trouble').setup()
-time([[Config for trouble.nvim]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-require('colorizer').setup()
-time([[Config for nvim-colorizer.lua]], false)
--- Config for: lspsaga.nvim
-time([[Config for lspsaga.nvim]], true)
-require('plugins.lspsaga')
-time([[Config for lspsaga.nvim]], false)
--- Config for: go.nvim
-time([[Config for go.nvim]], true)
-require('plugins.go')
-time([[Config for go.nvim]], false)
--- Config for: vista.vim
-time([[Config for vista.vim]], true)
-      vim.g.vista_default_executive = 'nvim_lsp'
-      vim.g.vista_icon_indent = {'╰─▸ ', '├─▸ '}
-      vim.g.vista_fzf_preview = {'right:50%'}
-    
-time([[Config for vista.vim]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require('plugins.lspconfig')
+time([[Config for nvim-lspconfig]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 require('plugins.lualine')
@@ -455,10 +409,66 @@ time([[Config for lualine.nvim]], false)
 time([[Config for vim-test]], true)
 require('plugins.vim-test')
 time([[Config for vim-test]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require('plugins.lspconfig')
-time([[Config for nvim-lspconfig]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+require('trouble').setup()
+time([[Config for trouble.nvim]], false)
+-- Config for: luatab.nvim
+time([[Config for luatab.nvim]], true)
+require('plugins.luatab')
+time([[Config for luatab.nvim]], false)
+-- Config for: kommentary
+time([[Config for kommentary]], true)
+require('plugins.kommentary')
+time([[Config for kommentary]], false)
+-- Config for: vista.vim
+time([[Config for vista.vim]], true)
+      vim.g.vista_default_executive = 'nvim_lsp'
+      vim.g.vista_icon_indent = {'╰─▸ ', '├─▸ '}
+      vim.g.vista_fzf_preview = {'right:50%'}
+    
+time([[Config for vista.vim]], false)
+-- Config for: nvcode-color-schemes.vim
+time([[Config for nvcode-color-schemes.vim]], true)
+require('plugins.colors')
+time([[Config for nvcode-color-schemes.vim]], false)
+-- Config for: lexima.vim
+time([[Config for lexima.vim]], true)
+vim.cmd('autocmd FileType TelescopePrompt let b:lexima_disabled=1')
+time([[Config for lexima.vim]], false)
+-- Config for: fzf-lua
+time([[Config for fzf-lua]], true)
+require('plugins.fzf-lua')
+time([[Config for fzf-lua]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('plugins.cmp')
+time([[Config for nvim-cmp]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('plugins.treesitter')
+time([[Config for nvim-treesitter]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require('plugins.gitsigns')
+time([[Config for gitsigns.nvim]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+require('colorizer').setup()
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: lspsaga.nvim
+time([[Config for lspsaga.nvim]], true)
+require('plugins.lspsaga')
+time([[Config for lspsaga.nvim]], false)
+-- Load plugins in order defined by `after`
+time([[Sequenced loading]], true)
+vim.cmd [[ packadd vim-matchup ]]
+vim.cmd [[ packadd nvim-treesitter-endwise ]]
+
+-- Config for: nvim-treesitter-endwise
+require('plugins.nvim-treesitter-endwise')
+
+time([[Sequenced loading]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads

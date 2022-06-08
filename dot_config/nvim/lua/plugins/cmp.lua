@@ -99,6 +99,7 @@ cmp.setup({
 
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
+    { name = 'vim-dadbod-completion' },
     { name = 'nvim_lsp_signature_help' },
     { name = 'luasnip' },
     { name = 'nvim_lua' },

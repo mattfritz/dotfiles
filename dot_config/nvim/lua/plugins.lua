@@ -22,10 +22,8 @@ return require('packer').startup(function(use, use_rocks)
     'neovim/nvim-lspconfig',
     config = [[require('plugins.lspconfig')]],
     requires = {
-      'williamboman/nvim-lsp-installer', -- TODO: replace this with more manual functionality
       {
         'tami5/lspsaga.nvim',
-        -- branch = 'nvim6.0',
         config = [[require('plugins.lspsaga')]]
       },
       'nanotee/sqls.nvim'
@@ -43,6 +41,7 @@ return require('packer').startup(function(use, use_rocks)
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-nvim-lua',
       'hrsh7th/cmp-nvim-lsp-signature-help',
+      'kristijanhusak/vim-dadbod-completion',
       'onsails/lspkind-nvim',
       'saadparwaiz1/cmp_luasnip',
       'ray-x/cmp-treesitter',
@@ -52,7 +51,18 @@ return require('packer').startup(function(use, use_rocks)
   use {
     'nvim-treesitter/nvim-treesitter',
     config = [[require('plugins.treesitter')]],
-    run = ':TSUpdate'
+    run = ':TSUpdate',
+    requires = {
+    }
+  }
+  use {
+    'andymass/vim-matchup',
+    after = 'nvim-treesitter'
+  }
+  use {
+    'RRethy/nvim-treesitter-endwise',
+    config = [[require('plugins.nvim-treesitter-endwise')]],
+    after = 'nvim-treesitter'
   }
   use {
     'ChristianChiarulli/nvcode-color-schemes.vim',
@@ -88,10 +98,6 @@ return require('packer').startup(function(use, use_rocks)
   use 'nathom/filetype.nvim'
   use 'vim-ruby/vim-ruby'
   use {
-    'ray-x/go.nvim',
-    config = [[require('plugins.go')]]
-  }
-  use {
     'tpope/vim-dispatch',
     setup = [[require('plugins.dispatch')]]
   }
@@ -100,6 +106,7 @@ return require('packer').startup(function(use, use_rocks)
     'kristijanhusak/vim-dadbod-ui',
     setup = [[
       vim.g.db_ui_win_position = 'right'
+      vim.g.db_ui_winwidth = 60
       vim.g.db_ui_show_database_icon = 1
       vim.g.db_ui_use_nerd_fonts = 1
     ]]
