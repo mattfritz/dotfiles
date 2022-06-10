@@ -45,6 +45,9 @@
   name = Matt Fritz
   email = mfritzer@gmail.com
 
+[url "https://{{- env "GITHUB_TOKEN" }}:@github.com/"]
+  insteadOf = https://github.com/
+
 # TODO: reconfigure new setup to enable 3-way diff
 # [mergetool "vimdiff"]
 #   cmd="nvim -f -c 'Gdiff' $MERGED"     # use fugitive.vim for 3-way merge
