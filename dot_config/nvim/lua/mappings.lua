@@ -22,15 +22,18 @@ set_keymap('v', 'p', 'pgvy')
 set_keymap('n', '<Leader>cc', [[<Cmd>luafile %<CR> | <Cmd>echo "Sourced file"<CR>]])
 
 -- ############## FZF ###############
+set_keymap('n', '<Leader>fk', [[<Cmd>lua require('fzf-lua').resume()<CR>]])
 set_keymap('n', '<Leader>ff', [[<Cmd>lua require('fzf-lua').files()<CR>]])
 set_keymap('n', '<Leader>fo', [[<Cmd>lua require('fzf-lua').oldfiles()<CR>]])
 set_keymap('n', '<Leader>fb', [[<Cmd>lua require('fzf-lua').buffers()<CR>]])
 set_keymap('n', '<Leader>fs', [[<Cmd>lua require('fzf-lua').grep_cword()<CR>]])
-set_keymap('n', '<Leader>fg', [[<Cmd>lua require('fzf-lua').live_grep()<CR>]])
+set_keymap('n', '<Leader>fg', [[<Cmd>lua require('fzf-lua').live_grep_native()<CR>]])
+set_keymap('n', '<Leader>fl', [[<Cmd>lua require('fzf-lua').grep_last()<CR>]])
 set_keymap('n', '<Leader>ft', [[<Cmd>lua require('fzf-lua').tabs()<CR>]])
+set_keymap('n', '<Leader>fr', [[<Cmd>lua require('fzf-lua').registers()<CR>]])
 
 set_keymap('n', '<Leader>fd', [[<Cmd>lua require('fzf-lua').lsp_definitions()<CR>]])
-set_keymap('n', '<Leader>fr', [[<Cmd>lua require('fzf-lua').lsp_references()<CR>]])
+set_keymap('n', '<Leader>fw', [[<Cmd>lua require('fzf-lua').lsp_references()<CR>]])
 set_keymap('n', '<Leader>fa', [[<Cmd>lua require('fzf-lua').lsp_code_actions()<CR>]])
 set_keymap('n', '<Leader>f:', [[<Cmd>lua require('fzf-lua').lsp_document_symbols()<CR>]])
 
@@ -54,6 +57,9 @@ set_keymap('n', '<C-d>', [[<Cmd>lua require('lspsaga.action').smart_scroll_with_
 set_keymap('n', 'go', [[<Cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>]])
 set_keymap('n', 'gj', [[<Cmd>Lspsaga diagnostic_jump_next<CR>]])
 set_keymap('n', 'gk', [[<Cmd>Lspsaga diagnostic_jump_prev<CR>]])
+
+-- Trouble
+set_keymap('n', 'ge', [[<Cmd>TroubleToggle<CR>]])
 
 -- Neogit (reevaluate)
 -- set_keymap('n', '<Leader>gg', [[<Cmd>Neogit<CR>]])

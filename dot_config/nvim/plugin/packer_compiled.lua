@@ -9,23 +9,26 @@ vim.api.nvim_command('packadd packer.nvim')
 
 local no_errors, error_msg = pcall(function()
 
-  local time
-  local profile_info
-  local should_profile = false
-  if should_profile then
-    local hrtime = vim.loop.hrtime
-    profile_info = {}
-    time = function(chunk, start)
-      if start then
-        profile_info[chunk] = hrtime()
-      else
-        profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
-      end
+_G._packer = _G._packer or {}
+_G._packer.inside_compile = true
+
+local time
+local profile_info
+local should_profile = false
+if should_profile then
+  local hrtime = vim.loop.hrtime
+  profile_info = {}
+  time = function(chunk, start)
+    if start then
+      profile_info[chunk] = hrtime()
+    else
+      profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
     end
-  else
-    time = function(chunk, start) end
   end
-  
+else
+  time = function(chunk, start) end
+end
+
 local function save_profiles(threshold)
   local sorted_times = {}
   for chunk_name, time_taken in pairs(profile_info) do
@@ -38,8 +41,10 @@ local function save_profiles(threshold)
       results[i] = elem[1] .. ' took ' .. elem[2] .. 'ms'
     end
   end
+  if threshold then
+    table.insert(results, '(Only showing plugins that took longer than ' .. threshold .. ' ms ' .. 'to load)')
+  end
 
-  _G._packer = _G._packer or {}
   _G._packer.profile_output = results
 end
 
@@ -212,8 +217,11 @@ _G.packer_plugins = {
   },
   ["nvim-treesitter"] = {
     after = { "nvim-treesitter-endwise", "vim-matchup" },
+    config = { "require('plugins.treesitter')" },
     loaded = true,
-    only_config = true
+    only_config = true,
+    path = "/Users/matt.fritz/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-treesitter-endwise"] = {
     config = { "require('plugins.nvim-treesitter-endwise')" },
@@ -372,6 +380,20 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Setup for: vim-dispatch
+time([[Setup for vim-dispatch]], true)
+require('plugins.dispatch')
+time([[Setup for vim-dispatch]], false)
+time([[packadd for vim-dispatch]], true)
+vim.cmd [[packadd vim-dispatch]]
+time([[packadd for vim-dispatch]], false)
+-- Setup for: vim-projectionist
+time([[Setup for vim-projectionist]], true)
+require('plugins.projectionist')
+time([[Setup for vim-projectionist]], false)
+time([[packadd for vim-projectionist]], true)
+vim.cmd [[packadd vim-projectionist]]
+time([[packadd for vim-projectionist]], false)
 -- Setup for: vim-dadbod-ui
 time([[Setup for vim-dadbod-ui]], true)
       vim.g.db_ui_win_position = 'right'
@@ -383,20 +405,6 @@ time([[Setup for vim-dadbod-ui]], false)
 time([[packadd for vim-dadbod-ui]], true)
 vim.cmd [[packadd vim-dadbod-ui]]
 time([[packadd for vim-dadbod-ui]], false)
--- Setup for: vim-projectionist
-time([[Setup for vim-projectionist]], true)
-require('plugins.projectionist')
-time([[Setup for vim-projectionist]], false)
-time([[packadd for vim-projectionist]], true)
-vim.cmd [[packadd vim-projectionist]]
-time([[packadd for vim-projectionist]], false)
--- Setup for: vim-dispatch
-time([[Setup for vim-dispatch]], true)
-require('plugins.dispatch')
-time([[Setup for vim-dispatch]], false)
-time([[packadd for vim-dispatch]], true)
-vim.cmd [[packadd vim-dispatch]]
-time([[packadd for vim-dispatch]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 require('plugins.lspconfig')
@@ -405,14 +413,10 @@ time([[Config for nvim-lspconfig]], false)
 time([[Config for lualine.nvim]], true)
 require('plugins.lualine')
 time([[Config for lualine.nvim]], false)
--- Config for: vim-test
-time([[Config for vim-test]], true)
-require('plugins.vim-test')
-time([[Config for vim-test]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-require('trouble').setup()
-time([[Config for trouble.nvim]], false)
+-- Config for: lspsaga.nvim
+time([[Config for lspsaga.nvim]], true)
+require('plugins.lspsaga')
+time([[Config for lspsaga.nvim]], false)
 -- Config for: luatab.nvim
 time([[Config for luatab.nvim]], true)
 require('plugins.luatab')
@@ -421,6 +425,10 @@ time([[Config for luatab.nvim]], false)
 time([[Config for kommentary]], true)
 require('plugins.kommentary')
 time([[Config for kommentary]], false)
+-- Config for: nvcode-color-schemes.vim
+time([[Config for nvcode-color-schemes.vim]], true)
+require('plugins.colors')
+time([[Config for nvcode-color-schemes.vim]], false)
 -- Config for: vista.vim
 time([[Config for vista.vim]], true)
       vim.g.vista_default_executive = 'nvim_lsp'
@@ -428,10 +436,6 @@ time([[Config for vista.vim]], true)
       vim.g.vista_fzf_preview = {'right:50%'}
     
 time([[Config for vista.vim]], false)
--- Config for: nvcode-color-schemes.vim
-time([[Config for nvcode-color-schemes.vim]], true)
-require('plugins.colors')
-time([[Config for nvcode-color-schemes.vim]], false)
 -- Config for: lexima.vim
 time([[Config for lexima.vim]], true)
 vim.cmd('autocmd FileType TelescopePrompt let b:lexima_disabled=1')
@@ -456,18 +460,22 @@ time([[Config for gitsigns.nvim]], false)
 time([[Config for nvim-colorizer.lua]], true)
 require('colorizer').setup()
 time([[Config for nvim-colorizer.lua]], false)
--- Config for: lspsaga.nvim
-time([[Config for lspsaga.nvim]], true)
-require('plugins.lspsaga')
-time([[Config for lspsaga.nvim]], false)
+-- Config for: vim-test
+time([[Config for vim-test]], true)
+require('plugins.vim-test')
+time([[Config for vim-test]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+require('trouble').setup()
+time([[Config for trouble.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
-vim.cmd [[ packadd vim-matchup ]]
 vim.cmd [[ packadd nvim-treesitter-endwise ]]
 
 -- Config for: nvim-treesitter-endwise
 require('plugins.nvim-treesitter-endwise')
 
+vim.cmd [[ packadd vim-matchup ]]
 time([[Sequenced loading]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
@@ -476,6 +484,13 @@ time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au VimEnter * ++once lua require("packer.load")({'packer.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
+
+_G._packer.inside_compile = false
+if _G._packer.needs_bufread == true then
+  vim.cmd("doautocmd BufRead")
+end
+_G._packer.needs_bufread = false
+
 if should_profile then save_profiles() end
 
 end)

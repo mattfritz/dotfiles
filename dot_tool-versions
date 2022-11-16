@@ -1,5 +1,5 @@
 golang 1.17.3
-neovim nightly
+neovim 0.8.1
 nodejs lts
 python 3.9.6
 ruby 2.7.4

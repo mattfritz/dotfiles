@@ -4,7 +4,7 @@ local luasnip = require('luasnip')
 local lspkind = require('lspkind')
 
 local has_words_before = function ()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
   if col == 0 then return false end
 
   return vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
@@ -12,17 +12,17 @@ end
 
 -- Highlight pop-up menu
 -- TODO: add class, module, snippet, field and other highlight types
-vim.highlight.create('CmpItemAbbrDeprecated', {guibg='NONE', guifg='#808080'})
-vim.highlight.create('CmpItemAbbrMatch', {guibg='NONE', guifg='#569CD6'})
-vim.highlight.create('CmpItemAbbrMatchFuzzy', {guibg='NONE', guifg='#569CD6'})
-vim.highlight.create('CmpItemKindVariable', {guibg='NONE', guifg='#9CDCFE'})
-vim.highlight.create('CmpItemKindInterface', {guibg='NONE', guifg='#9CDCFE'})
-vim.highlight.create('CmpItemKindText', {guibg='NONE', guifg='#9CDCFE'})
-vim.highlight.create('CmpItemKindFunction', {guibg='NONE', guifg='#C586C0'})
-vim.highlight.create('CmpItemKindMethod', {guibg='NONE', guifg='#C586C0'})
-vim.highlight.create('CmpItemKindKeyword', {guibg='NONE', guifg='#D4D4D4'})
-vim.highlight.create('CmpItemKindProperty', {guibg='NONE', guifg='#D4D4D4'})
-vim.highlight.create('CmpItemKindUnit', {guibg='NONE', guifg='#D4D4D4'})
+vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', {bg='NONE', fg='#808080'})
+vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch', {bg='NONE', fg='#569CD6'})
+vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy', {bg='NONE', fg='#569CD6'})
+vim.api.nvim_set_hl(0, 'CmpItemKindVariable', {bg='NONE', fg='#9CDCFE'})
+vim.api.nvim_set_hl(0, 'CmpItemKindInterface', {bg='NONE', fg='#9CDCFE'})
+vim.api.nvim_set_hl(0, 'CmpItemKindText', {bg='NONE', fg='#9CDCFE'})
+vim.api.nvim_set_hl(0, 'CmpItemKindFunction', {bg='NONE', fg='#C586C0'})
+vim.api.nvim_set_hl(0, 'CmpItemKindMethod', {bg='NONE', fg='#C586C0'})
+vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', {bg='NONE', fg='#D4D4D4'})
+vim.api.nvim_set_hl(0, 'CmpItemKindProperty', {bg='NONE', fg='#D4D4D4'})
+vim.api.nvim_set_hl(0, 'CmpItemKindUnit', {bg='NONE', fg='#D4D4D4'})
 
 cmp.setup({
   enabled = function ()
@@ -114,10 +114,15 @@ cmp.setup({
       require('luasnip').lsp_expand(args.body)
     end,
   },
+
+  window = {
+    documentation = cmp.config.window.bordered(),
+  },
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = 'buffer' }
   }
@@ -125,6 +130,7 @@ cmp.setup.cmdline('/', {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
     { name = 'path' }
   }, {

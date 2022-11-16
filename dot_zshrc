@@ -1,3 +1,5 @@
+# ZSH DEBUG: zmodload zsh/zprof
+
 # zplug
 export ZPLUG_HOME=/usr/local/opt/zplug
 if [ -f $ZPLUG_HOME/init.zsh ]; then
@@ -54,6 +56,8 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Starship
+# export STARSHIP_LOG=trace starship timings
+export STARSHIP_LOG=error
 [ -x "$(command -v starship)" ] && eval "$(starship init zsh)"
 
 # Zoxide
@@ -66,7 +70,6 @@ alias nvimdb=nvim --cmd 'lua vim.lsp.set_log_level("debug")'
 alias cz='chezmoi'
 alias av='aws-vault'
 alias dc='docker-compose'
-alias dev='$HOME/code/homebot/dev/bin/dev'
 alias hdev="docker-compose -f $HOME/code/homebot/hbdev/docker/services.yml -p hbdev"
 alias hbdev="$HOME/code/homebot/hbdev/bin/hbdev"
 alias tools="docker-compose -f $HOME/code/homebot/hbdev/docker/tools.yml -p hbdev"
@@ -76,3 +79,5 @@ alias ta='tmux attach-session -t'
 alias tl='tmux list-sessions'
 
 alias v='nvim'
+
+# ZSH DEBUG: zprof
