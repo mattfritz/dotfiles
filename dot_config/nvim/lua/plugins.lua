@@ -8,24 +8,71 @@ return require('packer').startup(function(use, use_rocks)
     'wbthomason/packer.nvim',
     event = 'VimEnter'
   }
+
+  local config = function(name)
+      return string.format("require('plugins.%s')", name)
+  end
+
+  local use_with_config = function(path, name)
+      use({ path, config = config(name) })
+  end
+
+  -- use 'github/copilot.vim'
+  use {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+        filetypes = {
+          prompt = false,
+        }
+      })
+    end,
+  }
+  use {
+    'zbirenbaum/copilot-cmp',
+    -- after = { 'copilot.lua' },
+    -- before = { 'nvim-cmp' },
+    config = function ()
+      require('copilot_cmp').setup({
+        -- formatters = {
+        --   insert_text = require('copilot_cmp.format').remove_existing
+        -- },
+      })
+    end
+  }
   use {
     'folke/trouble.nvim',
     config = [[require('trouble').setup()]],
     requires = 'kyazdani42/nvim-web-devicons'
   }
-  use { -- TODO: add additional functionality: https://github.com/ibhagwan/nvim-lua/tree/main/lua/plugins/fzf-lua
-    'ibhagwan/fzf-lua',
-    config = [[require('plugins.fzf-lua')]],
-    requires = 'kyazdani42/nvim-web-devicons'
+  -- use { -- TODO: add additional functionality: https://github.com/ibhagwan/nvim-lua/tree/main/lua/plugins/fzf-lua
+  --   'ibhagwan/fzf-lua',
+  --   config = [[require('plugins.fzf-lua')]],
+  --   requires = 'kyazdani42/nvim-web-devicons'
+  -- }
+  use {
+    'nvim-telescope/telescope.nvim',
+    config = [[require('plugins.telescope')]],
+    requires = {
+      {
+        'nvim-lua/plenary.nvim',
+        {
+          'nvim-telescope/telescope-fzf-native.nvim',
+          run = 'make'
+        },
+        'nvim-telescope/telescope-file-browser.nvim',
+        'cljoly/telescope-repo.nvim'
+      }
+    }
   }
   use {
     'neovim/nvim-lspconfig',
     config = [[require('plugins.lspconfig')]],
     requires = {
-      {
-        'tami5/lspsaga.nvim',
-        config = [[require('plugins.lspsaga')]]
-      },
       'nanotee/sqls.nvim'
     }
   }
@@ -46,14 +93,22 @@ return require('packer').startup(function(use, use_rocks)
       'saadparwaiz1/cmp_luasnip',
       'ray-x/cmp-treesitter',
       'lukas-reineke/cmp-under-comparator',
+      'zbirenbaum/copilot-cmp'
     }
   }
   use {
     'nvim-treesitter/nvim-treesitter',
     config = [[require('plugins.treesitter')]],
     run = ':TSUpdate',
+  }
+  use {
+    'pwntester/octo.nvim',
     requires = {
-    }
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'kyazdani42/nvim-web-devicons',
+    },
+    config = [[require('octo').setup()]]
   }
   use {
     'andymass/vim-matchup',
@@ -68,6 +123,7 @@ return require('packer').startup(function(use, use_rocks)
     'ChristianChiarulli/nvcode-color-schemes.vim',
     config = [[require('plugins.colors')]]
   }
+  use 'junegunn/vim-easy-align'
   use 'godlygeek/tabular' -- LEARN: shortcuts
   use {
     'cohama/lexima.vim',
@@ -124,7 +180,15 @@ return require('packer').startup(function(use, use_rocks)
     'b3nj5m1n/kommentary',
     config = [[require('plugins.kommentary')]]
   }
-  use "npxbr/glow.nvim" -- LEARN: useful?
+  use {
+    'gaoDean/autolist.nvim',
+    config = [[require('autolist').setup({})]]
+  }
+  use {
+    'glepnir/hlsearch.nvim',
+    event = 'BufRead',
+    config = [[require('hlsearch').setup({})]]
+  }
   use {
     'lewis6991/gitsigns.nvim', -- LEARN: compare with vim-fugitive/neogit
     config = [[require('plugins.gitsigns')]],

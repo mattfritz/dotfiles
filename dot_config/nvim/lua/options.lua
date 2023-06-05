@@ -17,10 +17,11 @@ local options     = {
   shiftwidth    = 2,
   showtabline   = 2, -- always show tabline
   signcolumn    = 'yes',
+  smartcase     = true,
   smartindent   = true,
   splitbelow    = true,
   splitright    = true,
-  switchbuf     = vim.opt.switchbuf + 'usetab,newtab',
+  switchbuf     = vim.opt.switchbuf + 'uselast,usetab,newtab',
   tabstop       = 4,
   termguicolors = true,
   timeoutlen    = 400,
@@ -44,10 +45,10 @@ end
 
 -- TODO: Review all of these. May need netrw still
 local disabled_built_ins = {
-  --"netrw",
-  --"netrwPlugin",
-  --"netrwSettings",
-  --"netrwFileHandlers",
+  -- "netrw",
+  -- "netrwPlugin",
+  -- "netrwSettings",
+  -- "netrwFileHandlers",
   -- "gzip",
   -- "zip",
   -- "zipPlugin",

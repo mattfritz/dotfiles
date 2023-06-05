@@ -63,6 +63,9 @@ export STARSHIP_LOG=error
 # Zoxide
 [ -x "$(command -v zoxide)" ] && eval "$(zoxide init zsh --cmd cd)"
 
+# Set for LuaJIT compiler
+export MACOSX_DEPLOYMENT_TARGET=12.6
+
 # Secrets export
 [ -f ~/.secret ] && source ~/.secret
 
@@ -70,10 +73,7 @@ alias nvimdb=nvim --cmd 'lua vim.lsp.set_log_level("debug")'
 alias cz='chezmoi'
 alias av='aws-vault'
 alias dc='docker-compose'
-alias hdev="docker-compose -f $HOME/code/homebot/hbdev/docker/services.yml -p hbdev"
-alias hbdev="$HOME/code/homebot/hbdev/bin/hbdev"
-alias tools="docker-compose -f $HOME/code/homebot/hbdev/docker/tools.yml -p hbdev"
-
+alias hdev="docker-compose -f $HOME/code/homebot/hbdev/docker-compose.yml -p hbdev"
 alias tn='tmux new-session -s'
 alias ta='tmux attach-session -t'
 alias tl='tmux list-sessions'

@@ -2,7 +2,7 @@
 local lspconfig = require('lspconfig')
 -- local configs = require('lspconfig.configs')
 -- local util = require('lspconfig.util')
-local saga = require('lspsaga')
+-- local saga = require('lspsaga')
 
 local servers = {
   'ansiblels',
@@ -18,12 +18,13 @@ local servers = {
   'html',
   'jedi_language_server',
   'jsonls',
+  'lua_ls',
   'pyright',
   'rust_analyzer',
   -- 'snyk_ls',
   'solargraph',
-  'sqls',
-  'sumneko_lua',
+  'sqlls',
+  -- 'sumneko_lua',
   'svelte',
   'tailwindcss',
   'terraformls',
@@ -76,33 +77,30 @@ for _, name in pairs(servers) do
     }
   }
 
-  if name == 'sumneko_lua' then
+  if name == 'lua_ls' then
     opts.settings = {
       Lua = {
+        runtime = {
+          version = 'LuaJIT'
+        },
         diagnostics = {
           globals = {'vim'},
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
           library = vim.api.nvim_get_runtime_file("", true),
+          checkThirdParty = false,
         },
         telemetry = {
           enable = false,
         },
       }
     }
-  elseif name == 'sqls' then
-    opts.on_attach = function(client, bufnr)
-      client.resolved_capabilities.execute_command = true
-      client.commands = require('sqls').commands
-
-      require('sqls').on_attach(client, bufnr)
-    end
   end
 
   -- This setup() function is exactly the same as lspconfig's setup function.
   -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
   lspconfig[name].setup(opts)
 
-  saga.init_lsp_saga()
+  -- saga.init_lsp_saga()
 end
