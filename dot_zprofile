@@ -14,3 +14,7 @@ export PAGER='less'
 if [[ -z "$LANG" ]]; then
   export LANG='en_US.UTF-8'
 fi
+
+# ULIMITS
+ulimit -Sn 4096      # Increase open file limit
+ulimit -Sl unlimited # Increase maximum locked memory

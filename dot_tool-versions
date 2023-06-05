@@ -1,7 +1,7 @@
 golang 1.17.3
-neovim 0.8.1
+neovim 0.9.1
 nodejs lts
-python 3.9.6
+python 3.11.3
 ruby 2.7.4
 rust 1.56.1
 yarn 1.22.17

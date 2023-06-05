@@ -45,6 +45,9 @@ if [ -f $ZPLUG_HOME/init.zsh ]; then
   bindkey -M vicmd 'j' history-substring-search-down
 fi
 
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # ASDF environment
 export ASDF_DIR="$(brew --prefix asdf)/libexec"
 source $ASDF_DIR/asdf.sh
