@@ -1,0 +1,30 @@
+bashls.lua,npm,bash-language-server
+cssls.lua,npm,vscode-langservers-extracted
+diagnosticls.lua,npm,diagnostic-languageserver
+dockerls.luaa,npm,dockerfile-language-server-nodejs
+ember.lua,npm,@lifeart/ember-language-server
+emmet-ls.lua,npm,emmet-ls
+eslint.lua,npm,vscode-langservers-extracted" { "eslint", "javascript", "typescript" }
+graphql.lua,npm,graphql-language-service-cli and graphql
+html.lua,vscode-langservers-extracted
+jsonls.lua,npm,vscode-langservers-extracted
+pyright.lua,npm,pyright
+svelte.lua,npm,svelte-language-server
+tailwindcss.lua,npm,@tailwindcss/language-server
+tsserver.lua,npm,typescript-language-server and typescript
+vimls.lua,npm,vim-language-server
+yamlls.lua,npm,yaml-language-server
+ansiblels.lua,npm,@ansible/ansible-language-server,(ansible-lint thru pip)
+
+jedi-language-server.lua,pip,jedi-language-server
+
+solargraph.lua,gem,solargraph and solargraph-rails
+
+gopls.lua,go,golang.org/x/tools/gopls
+sqls.lua,go,github.com/lighttiger2505/sqls
+
+brew install lua-language-server rust-analyzer terraform-ls tflint
+rust-analyzer.lua,githubrelease,https://github.com/williamboman/nvim-lsp-installer/blob/6e6d75b7a446a13ec2bdaaf7934c071936ad3d8c/lua/nvim-lsp-installer/servers/rust_analyzer/init.lua
+sumneko-lua.lua,githubrelease,https://github.com/williamboman/nvim-lsp-installer/blob/6e6d75b7a446a13ec2bdaaf7934c071936ad3d8c/lua/nvim-lsp-installer/servers/sumneko_lua/init.lua
+terraformls.lua,githubrelease,https://github.com/williamboman/nvim-lsp-installer/blob/6e6d75b7a446a13ec2bdaaf7934c071936ad3d8c/lua/nvim-lsp-installer/servers/terraformls/init.lua
+tflint.lua,githubrelease,https://github.com/williamboman/nvim-lsp-installer/blob/6e6d75b7a446a13ec2bdaaf7934c071936ad3d8c/lua/nvim-lsp-installer/servers/tflint/init.lua

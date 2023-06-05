@@ -1,0 +1,31 @@
+-- TODO: add projections for React/Ember/etc.
+-- vim.g.projectionist_heuristics = {
+--   ["app/services/*.rb"] = {
+--     alternate = "spec/services/{}_spec.rb",
+--     type = "source"
+--   },
+--   ["spec/services/*.rb"]= {
+--     alternate = "app/services/{}.rb",
+--     type = "test"
+--   },
+--   ["app/interactors/*.rb"] = {
+--     alternate = "spec/interactors/{}_spec.rb",
+--     type = "source"
+--   },
+--   ["spec/interactors/*.rb"]= {
+--     alternate = "app/interactors/{}.rb",
+--     type = "test"
+--   },
+-- }
+
+-- EXAMPLE
+-- ["src/main/java/*.java"]= {
+--   ["alternate"]= "src/test/java/{}.java",
+--   ["type"]= "source"
+-- },
+-- ["src/test/java/*.java"]= {
+--   ["alternate"] = "src/main/java/{}.java",
+--   ["type"] = "test"
+-- },
+-- ["*.java"] = {["dispatch"]= "javac {file}"},
+-- ["*"] = {["make"]= "mvn"},
